@@ -30,36 +30,20 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Data source: local OneDrive sync or GitHub (for Streamlit Cloud deployment)
-GITHUB_RAW_BASE = "https://raw.githubusercontent.com/Sharecare/CRS_JIRA_REPO/main"
+# Data source — works locally and on Streamlit Cloud
+APP_DIR = os.path.dirname(os.path.abspath(__file__)) if "__file__" in dir() else os.getcwd()
+DATA_DIR = os.path.join(APP_DIR, "data")
 
-if platform.system() == "Windows":
-    SHAREPOINT_DIR = os.path.join(os.path.expanduser("~"),
-        "OneDrive - Sharecare, Inc", "Custom Reporting Analysts - Jira")
+# Check for data in same folder (SharePoint sync) or data/ subfolder (repo)
+if os.path.exists(os.path.join(APP_DIR, "crs_jira_export.csv")):
+    TASKS_CSV = os.path.join(APP_DIR, "crs_jira_export.csv")
+    EPICS_CSV = os.path.join(APP_DIR, "crs_jira_export_epics.csv")
+elif os.path.exists(os.path.join(DATA_DIR, "crs_jira_export.csv")):
+    TASKS_CSV = os.path.join(DATA_DIR, "crs_jira_export.csv")
+    EPICS_CSV = os.path.join(DATA_DIR, "crs_jira_export_epics.csv")
 else:
-    SHAREPOINT_DIR = os.path.expanduser(
-        "~/Library/CloudStorage/OneDrive-Sharecare,Inc/Custom Reporting Analysts - Jira"
-    )
-
-# If app.py is in the SharePoint folder itself, use that directory
-if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "crs_jira_export.csv")):
-    SHAREPOINT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-TASKS_CSV = os.path.join(SHAREPOINT_DIR, "crs_jira_export.csv")
-EPICS_CSV = os.path.join(SHAREPOINT_DIR, "crs_jira_export_epics.csv")
-
-# If local files not found, try repo data folder, then GitHub raw (Streamlit Cloud)
-USE_GITHUB = False
-if not os.path.exists(TASKS_CSV):
-    # Try relative data folder (when deployed from repo)
-    repo_data = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "crs_jira_export.csv")
-    if os.path.exists(repo_data):
-        TASKS_CSV = repo_data
-        EPICS_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "crs_jira_export_epics.csv")
-    else:
-        TASKS_CSV = f"{GITHUB_RAW_BASE}/projects/jira_dashboard/data/crs_jira_export.csv"
-        EPICS_CSV = f"{GITHUB_RAW_BASE}/projects/jira_dashboard/data/crs_jira_export_epics.csv"
-        USE_GITHUB = True
+    st.error("Data files not found. Expected crs_jira_export.csv in app directory or data/ subfolder.")
+    st.stop()
 
 
 # ---------------------------------------------------------------------------
