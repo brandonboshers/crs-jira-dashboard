@@ -30,20 +30,36 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Data source — works locally and on Streamlit Cloud
-APP_DIR = os.path.dirname(os.path.abspath(__file__)) if "__file__" in dir() else os.getcwd()
-DATA_DIR = os.path.join(APP_DIR, "data")
+# Data source: local OneDrive sync or GitHub (for Streamlit Cloud deployment)
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/Sharecare/CRS_JIRA_REPO/main"
 
-# Check for data in same folder (SharePoint sync) or data/ subfolder (repo)
-if os.path.exists(os.path.join(APP_DIR, "crs_jira_export.csv")):
-    TASKS_CSV = os.path.join(APP_DIR, "crs_jira_export.csv")
-    EPICS_CSV = os.path.join(APP_DIR, "crs_jira_export_epics.csv")
-elif os.path.exists(os.path.join(DATA_DIR, "crs_jira_export.csv")):
-    TASKS_CSV = os.path.join(DATA_DIR, "crs_jira_export.csv")
-    EPICS_CSV = os.path.join(DATA_DIR, "crs_jira_export_epics.csv")
+if platform.system() == "Windows":
+    SHAREPOINT_DIR = os.path.join(os.path.expanduser("~"),
+        "OneDrive - Sharecare, Inc", "Custom Reporting Analysts - Jira")
 else:
-    st.error("Data files not found. Expected crs_jira_export.csv in app directory or data/ subfolder.")
-    st.stop()
+    SHAREPOINT_DIR = os.path.expanduser(
+        "~/Library/CloudStorage/OneDrive-Sharecare,Inc/Custom Reporting Analysts - Jira"
+    )
+
+# If app.py is in the SharePoint folder itself, use that directory
+if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "crs_jira_export.csv")):
+    SHAREPOINT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+TASKS_CSV = os.path.join(SHAREPOINT_DIR, "crs_jira_export.csv")
+EPICS_CSV = os.path.join(SHAREPOINT_DIR, "crs_jira_export_epics.csv")
+
+# If local files not found, try repo data folder, then GitHub raw (Streamlit Cloud)
+USE_GITHUB = False
+if not os.path.exists(TASKS_CSV):
+    # Try relative data folder (when deployed from repo)
+    repo_data = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "crs_jira_export.csv")
+    if os.path.exists(repo_data):
+        TASKS_CSV = repo_data
+        EPICS_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "crs_jira_export_epics.csv")
+    else:
+        TASKS_CSV = f"{GITHUB_RAW_BASE}/projects/jira_dashboard/data/crs_jira_export.csv"
+        EPICS_CSV = f"{GITHUB_RAW_BASE}/projects/jira_dashboard/data/crs_jira_export_epics.csv"
+        USE_GITHUB = True
 
 
 # ---------------------------------------------------------------------------
@@ -559,6 +575,58 @@ with tab1:
                          })
         fig.update_layout(showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
+
+    # Tasks by Frequency per Assignee — Advanced Scatter
+    st.subheader("Workload Distribution by Frequency")
+    st.caption("Bubble size = task count | Color = avg turnaround | Position = assignee × frequency")
+    freq_by_assignee = filtered.groupby(["assignee", "frequency"]).agg(
+        count=("key", "count"),
+        est_hours=("estimated_completion_time", lambda x: x.sum() / 60),
+        open_count=("status", lambda x: (~x.isin(["Done", "Cancelled"])).sum()),
+        closed_count=("status", lambda x: (x == "Done").sum()),
+        avg_turn=("turnaround_days", lambda x: clean_turnaround(x).mean()),
+    ).reset_index()
+    freq_by_assignee["completion_rate"] = (freq_by_assignee["closed_count"] / freq_by_assignee["count"] * 100).round(1)
+    freq_by_assignee["avg_turn"] = freq_by_assignee["avg_turn"].fillna(0).round(1)
+    freq_by_assignee["est_hours"] = freq_by_assignee["est_hours"].round(1)
+
+    fig = px.scatter(freq_by_assignee, x="assignee", y="frequency",
+                     size="count", color="avg_turn",
+                     hover_name="assignee", height=450,
+                     hover_data={
+                         "count": True,
+                         "est_hours": ":.1f",
+                         "open_count": True,
+                         "closed_count": True,
+                         "completion_rate": ":.1f",
+                         "avg_turn": ":.1f",
+                     },
+                     labels={
+                         "count": "Tasks",
+                         "est_hours": "Est. Hours",
+                         "open_count": "Open",
+                         "closed_count": "Closed",
+                         "completion_rate": "% Complete",
+                         "avg_turn": "Avg Turnaround (d)",
+                         "frequency": "Frequency",
+                     },
+                     color_continuous_scale="RdYlGn_r",
+                     size_max=50)
+    fig.update_layout(xaxis_tickangle=-45, xaxis_title="", yaxis_title="",
+                      coloraxis_colorbar=dict(title="Avg Turn (d)"),
+                      margin=dict(b=60))
+    st.plotly_chart(fig, use_container_width=True)
+
+    # Summary table below
+    with st.expander("View detailed breakdown"):
+        st.dataframe(
+            freq_by_assignee.rename(columns={
+                "assignee": "Assignee", "frequency": "Frequency", "count": "Tasks",
+                "est_hours": "Est. Hours", "open_count": "Open", "closed_count": "Closed",
+                "completion_rate": "% Complete", "avg_turn": "Avg Turn (d)"
+            }).sort_values(["Assignee", "Tasks"], ascending=[True, False]),
+            use_container_width=True, hide_index=True
+        )
 
     st.divider()
 
