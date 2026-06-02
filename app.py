@@ -74,8 +74,12 @@ def load_data():
     tasks["created"] = pd.to_datetime(tasks["created"], errors="coerce", utc=True).dt.tz_localize(None)
     tasks["closed_date"] = pd.to_datetime(tasks["closed_date"], errors="coerce", utc=True).dt.tz_localize(None)
 
-    # Turnaround time (days)
-    tasks["turnaround_days"] = (tasks["closed_date"] - tasks["created"]).dt.days
+    # Turnaround time (days) — business days only (Mon-Fri)
+    tasks["turnaround_days"] = tasks.apply(
+        lambda row: len(pd.bdate_range(row["created"], row["closed_date"])) - 1
+        if pd.notna(row["created"]) and pd.notna(row["closed_date"]) else None,
+        axis=1
+    )
 
     # Age (days since created, for open tasks)
     tasks["age_days"] = (pd.Timestamp.now() - tasks["created"]).dt.days
@@ -185,7 +189,7 @@ with tab1:
     closed_tasks = filtered[filtered["status"] == "Done"]
     rush_tasks = filtered[filtered["labels"].str.contains("Rush", case=False, na=False)]
 
-    col1, col2, col3, col4, col5, col6 = st.columns(6)
+    col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
     col1.metric("Total Tasks", len(filtered))
 
     # Open with created comparison
@@ -194,14 +198,19 @@ with tab1:
     created_prev_7 = filtered[(filtered["created"] >= (now_ts - timedelta(days=14))) &
                               (filtered["created"] < (now_ts - timedelta(days=7)))]
     delta_created_7d = len(created_last_7) - len(created_prev_7)
-    col2.metric("Open", len(open_tasks), delta=f"{delta_created_7d:+d} created (7d)", delta_color="inverse")
+    pct_created = ((delta_created_7d / max(len(created_prev_7), 1)) * 100)
+    col2.metric("Open", len(open_tasks),
+                delta=f"{len(created_last_7)} vs {len(created_prev_7)} ({pct_created:+.0f}%) 7d",
+                delta_color="inverse")
 
     # Closed
     last_7 = closed_tasks[closed_tasks["closed_date"] >= (now_ts - timedelta(days=7))]
     prev_7 = closed_tasks[(closed_tasks["closed_date"] >= (now_ts - timedelta(days=14))) &
                           (closed_tasks["closed_date"] < (now_ts - timedelta(days=7)))]
     delta_7d = len(last_7) - len(prev_7)
-    col3.metric("Closed", len(closed_tasks), delta=f"{delta_7d:+d} closed (7d)")
+    pct_closed = ((delta_7d / max(len(prev_7), 1)) * 100)
+    col3.metric("Closed", len(closed_tasks),
+                delta=f"{len(last_7)} vs {len(prev_7)} ({pct_closed:+.0f}%) 7d")
 
     if len(closed_tasks) > 0:
         turnaround = clean_turnaround(closed_tasks["turnaround_days"])
@@ -218,7 +227,10 @@ with tab1:
     rush_prev_7 = rush_tasks[(rush_tasks["created"] >= (now_ts - timedelta(days=14))) &
                              (rush_tasks["created"] < (now_ts - timedelta(days=7)))]
     delta_rush_7d = len(rush_last_7) - len(rush_prev_7)
-    col5.metric("Rush Tickets", len(rush_tasks), delta=f"{delta_rush_7d:+d} (7d)", delta_color="inverse")
+    pct_rush = ((delta_rush_7d / max(len(rush_prev_7), 1)) * 100)
+    col5.metric("Rush Tickets", len(rush_tasks),
+                delta=f"{len(rush_last_7)} vs {len(rush_prev_7)} ({pct_rush:+.0f}%) 7d",
+                delta_color="inverse")
 
     # Est. Hours
     total_hours = filtered["estimated_completion_time"].sum() / 60
@@ -226,7 +238,21 @@ with tab1:
     hours_prev_7 = closed_tasks[(closed_tasks["closed_date"] >= (now_ts - timedelta(days=14))) &
                                 (closed_tasks["closed_date"] < (now_ts - timedelta(days=7)))]["estimated_completion_time"].sum() / 60
     delta_hours_7d = hours_last_7 - hours_prev_7
-    col6.metric("Est. Hours", f"{total_hours:.1f}h", delta=f"{delta_hours_7d:+.1f}h (7d)")
+    pct_hours = ((delta_hours_7d / max(hours_prev_7, 0.1)) * 100)
+    col6.metric("Est. Hours", f"{total_hours:.1f}h",
+                delta=f"{hours_last_7:.0f}h vs {hours_prev_7:.0f}h ({pct_hours:+.0f}%) 7d")
+
+    # Hrs/Day per Assignee (based on closed work in last 30 days ÷ working days)
+    last_30_closed = closed_tasks[closed_tasks["closed_date"] >= (now_ts - timedelta(days=30))]
+    working_days = 22  # approx working days in a month
+    if len(last_30_closed) > 0 and filtered["assignee"].nunique() > 0:
+        total_closed_hours_30d = last_30_closed["estimated_completion_time"].sum() / 60
+        n_assignees_active = last_30_closed["assignee"].nunique()
+        hrs_per_day = total_closed_hours_30d / (working_days * n_assignees_active)
+    else:
+        hrs_per_day = 0
+    col7.metric("Hrs/Day", f"{hrs_per_day:.1f}h",
+                delta=f"per person (30d avg)", delta_color="off")
 
     # Info descriptions
     with st.expander("ℹ️ Metric Definitions"):
@@ -548,86 +574,6 @@ with tab1:
     )
 
     # Charts
-    col_left, col_right = st.columns(2)
-
-    with col_left:
-        # Stacked bar: open vs closed per assignee
-        bar_data = assignee_summary.melt(
-            id_vars=["assignee"], value_vars=["open_count", "closed_count"],
-            var_name="status", value_name="count"
-        )
-        bar_data["status"] = bar_data["status"].map({"open_count": "Open", "closed_count": "Closed"})
-        fig = px.bar(bar_data, x="assignee", y="count", color="status",
-                     barmode="stack", height=350,
-                     color_discrete_map={"Open": "#e74c3c", "Closed": "#2ecc71"})
-        fig.update_layout(xaxis_tickangle=-45, xaxis_title="", yaxis_title="Tasks",
-                          legend=dict(orientation="h", yanchor="bottom", y=1.02))
-        st.plotly_chart(fig, use_container_width=True)
-
-    with col_right:
-        # Completion rate + avg turnaround scatter
-        fig = px.scatter(assignee_summary, x="completion_rate", y="avg_turnaround",
-                         size="total", color="assignee", hover_name="assignee",
-                         height=350, labels={
-                             "completion_rate": "Completion Rate (%)",
-                             "avg_turnaround": "Avg Turnaround (days)",
-                             "total": "Total Tasks"
-                         })
-        fig.update_layout(showlegend=False)
-        st.plotly_chart(fig, use_container_width=True)
-
-    # Tasks by Frequency per Assignee — Advanced Scatter
-    st.subheader("Workload Distribution by Frequency")
-    st.caption("Bubble size = task count | Color = avg turnaround | Position = assignee × frequency")
-    freq_by_assignee = filtered.groupby(["assignee", "frequency"]).agg(
-        count=("key", "count"),
-        est_hours=("estimated_completion_time", lambda x: x.sum() / 60),
-        open_count=("status", lambda x: (~x.isin(["Done", "Cancelled"])).sum()),
-        closed_count=("status", lambda x: (x == "Done").sum()),
-        avg_turn=("turnaround_days", lambda x: clean_turnaround(x).mean()),
-    ).reset_index()
-    freq_by_assignee["completion_rate"] = (freq_by_assignee["closed_count"] / freq_by_assignee["count"] * 100).round(1)
-    freq_by_assignee["avg_turn"] = freq_by_assignee["avg_turn"].fillna(0).round(1)
-    freq_by_assignee["est_hours"] = freq_by_assignee["est_hours"].round(1)
-
-    fig = px.scatter(freq_by_assignee, x="assignee", y="frequency",
-                     size="count", color="avg_turn",
-                     hover_name="assignee", height=450,
-                     hover_data={
-                         "count": True,
-                         "est_hours": ":.1f",
-                         "open_count": True,
-                         "closed_count": True,
-                         "completion_rate": ":.1f",
-                         "avg_turn": ":.1f",
-                     },
-                     labels={
-                         "count": "Tasks",
-                         "est_hours": "Est. Hours",
-                         "open_count": "Open",
-                         "closed_count": "Closed",
-                         "completion_rate": "% Complete",
-                         "avg_turn": "Avg Turnaround (d)",
-                         "frequency": "Frequency",
-                     },
-                     color_continuous_scale="RdYlGn_r",
-                     size_max=50)
-    fig.update_layout(xaxis_tickangle=-45, xaxis_title="", yaxis_title="",
-                      coloraxis_colorbar=dict(title="Avg Turn (d)"),
-                      margin=dict(b=60))
-    st.plotly_chart(fig, use_container_width=True)
-
-    # Summary table below
-    with st.expander("View detailed breakdown"):
-        st.dataframe(
-            freq_by_assignee.rename(columns={
-                "assignee": "Assignee", "frequency": "Frequency", "count": "Tasks",
-                "est_hours": "Est. Hours", "open_count": "Open", "closed_count": "Closed",
-                "completion_rate": "% Complete", "avg_turn": "Avg Turn (d)"
-            }).sort_values(["Assignee", "Tasks"], ascending=[True, False]),
-            use_container_width=True, hide_index=True
-        )
-
     st.divider()
 
     # ---------------------------------------------------------------------------
