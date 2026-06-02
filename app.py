@@ -27,6 +27,9 @@ st.markdown("""
 [data-testid="stMetric"] p {
     margin-bottom: 0;
 }
+[data-testid="stMetricDeltaIcon-neutral"] {
+    display: none;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -190,28 +193,65 @@ with tab1:
     rush_tasks = filtered[filtered["labels"].str.contains("Rush", case=False, na=False)]
 
     col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
-    col1.metric("Total Tasks", len(filtered))
 
-    # Open with created comparison
+    # Calculations
     now_ts = pd.Timestamp.now()
     created_last_7 = filtered[filtered["created"] >= (now_ts - timedelta(days=7))]
     created_prev_7 = filtered[(filtered["created"] >= (now_ts - timedelta(days=14))) &
                               (filtered["created"] < (now_ts - timedelta(days=7)))]
     delta_created_7d = len(created_last_7) - len(created_prev_7)
     pct_created = ((delta_created_7d / max(len(created_prev_7), 1)) * 100)
-    col2.metric("Open", len(open_tasks),
-                delta=f"{len(created_last_7)} vs {len(created_prev_7)} ({pct_created:+.0f}%) 7d",
-                delta_color="inverse")
 
-    # Closed
     last_7 = closed_tasks[closed_tasks["closed_date"] >= (now_ts - timedelta(days=7))]
     prev_7 = closed_tasks[(closed_tasks["closed_date"] >= (now_ts - timedelta(days=14))) &
                           (closed_tasks["closed_date"] < (now_ts - timedelta(days=7)))]
     delta_7d = len(last_7) - len(prev_7)
     pct_closed = ((delta_7d / max(len(prev_7), 1)) * 100)
-    col3.metric("Closed", len(closed_tasks),
-                delta=f"{len(last_7)} vs {len(prev_7)} ({pct_closed:+.0f}%) 7d")
 
+    rush_last_7 = rush_tasks[rush_tasks["created"] >= (now_ts - timedelta(days=7))]
+    rush_prev_7 = rush_tasks[(rush_tasks["created"] >= (now_ts - timedelta(days=14))) &
+                             (rush_tasks["created"] < (now_ts - timedelta(days=7)))]
+    delta_rush_7d = len(rush_last_7) - len(rush_prev_7)
+    pct_rush = ((delta_rush_7d / max(len(rush_prev_7), 1)) * 100)
+
+    hours_last_7 = closed_tasks[closed_tasks["closed_date"] >= (now_ts - timedelta(days=7))]["estimated_completion_time"].sum() / 60
+    hours_prev_7 = closed_tasks[(closed_tasks["closed_date"] >= (now_ts - timedelta(days=14))) &
+                                (closed_tasks["closed_date"] < (now_ts - timedelta(days=7)))]["estimated_completion_time"].sum() / 60
+    delta_hours_7d = hours_last_7 - hours_prev_7
+    pct_hours = ((delta_hours_7d / max(hours_prev_7, 0.1)) * 100)
+
+    total_hours = filtered["estimated_completion_time"].sum() / 60
+
+    # Hrs/Day
+    last_45_closed = closed_tasks[closed_tasks["closed_date"] >= (now_ts - timedelta(days=45))]
+    biz_days_range = pd.bdate_range(start=now_ts - timedelta(days=45), end=now_ts)
+    working_days = len(biz_days_range)
+    if len(last_45_closed) > 0 and filtered["assignee"].nunique() > 0:
+        total_closed_hours_45d = last_45_closed["estimated_completion_time"].sum() / 60
+        # Exclude Scott from headcount — he's a manager, not a producing analyst
+        active_assignees = last_45_closed["assignee"].unique()
+        n_assignees_active = len([a for a in active_assignees if "Scott" not in str(a)])
+        n_assignees_active = max(n_assignees_active, 1)
+        hrs_per_day = total_closed_hours_45d / (working_days * n_assignees_active)
+    else:
+        hrs_per_day = 0
+
+    # Total Tasks (created 7d comparison)
+    total_last_7 = len(created_last_7)
+    total_prev_7 = len(created_prev_7)
+    delta_total = total_last_7 - total_prev_7
+    pct_total = ((delta_total / max(total_prev_7, 1)) * 100)
+    col1.metric("Total Tasks", f"{len(filtered):,}",
+                delta=f"{delta_total:+d} ({total_last_7} vs {total_prev_7}) 7d")
+
+    # Open (no footnote)
+    col2.metric("Open", f"{len(open_tasks):,}")
+
+    # Closed (more closed = good → normal)
+    col3.metric("Closed", f"{len(closed_tasks):,}",
+                delta=f"{delta_7d:+d} ({len(last_7)} vs {len(prev_7)}) 7d")
+
+    # Avg Turnaround (no arrow)
     if len(closed_tasks) > 0:
         turnaround = clean_turnaround(closed_tasks["turnaround_days"])
         raw_count = closed_tasks["turnaround_days"].dropna().count()
@@ -221,48 +261,32 @@ with tab1:
                     delta=f"Median: {turnaround.median():.0f}d | Mode: {mode_val:.0f}d", delta_color="off")
     else:
         col4.metric("Avg Turnaround", "N/A")
-    
-    # Rush tickets
-    rush_last_7 = rush_tasks[rush_tasks["created"] >= (now_ts - timedelta(days=7))]
-    rush_prev_7 = rush_tasks[(rush_tasks["created"] >= (now_ts - timedelta(days=14))) &
-                             (rush_tasks["created"] < (now_ts - timedelta(days=7)))]
-    delta_rush_7d = len(rush_last_7) - len(rush_prev_7)
-    pct_rush = ((delta_rush_7d / max(len(rush_prev_7), 1)) * 100)
-    col5.metric("Rush Tickets", len(rush_tasks),
-                delta=f"{len(rush_last_7)} vs {len(rush_prev_7)} ({pct_rush:+.0f}%) 7d",
+
+    # Rush (more rush = bad → negate so Streamlit colors correctly)
+    delta_rush_display = len(rush_last_7) - len(rush_prev_7)
+    col5.metric("Rush Tickets", f"{len(rush_tasks):,}",
+                delta=f"{delta_rush_display:+d} ({len(rush_last_7)} vs {len(rush_prev_7)}) 7d",
                 delta_color="inverse")
 
     # Est. Hours
-    total_hours = filtered["estimated_completion_time"].sum() / 60
-    hours_last_7 = closed_tasks[closed_tasks["closed_date"] >= (now_ts - timedelta(days=7))]["estimated_completion_time"].sum() / 60
-    hours_prev_7 = closed_tasks[(closed_tasks["closed_date"] >= (now_ts - timedelta(days=14))) &
-                                (closed_tasks["closed_date"] < (now_ts - timedelta(days=7)))]["estimated_completion_time"].sum() / 60
-    delta_hours_7d = hours_last_7 - hours_prev_7
-    pct_hours = ((delta_hours_7d / max(hours_prev_7, 0.1)) * 100)
-    col6.metric("Est. Hours", f"{total_hours:.1f}h",
-                delta=f"{hours_last_7:.0f}h vs {hours_prev_7:.0f}h ({pct_hours:+.0f}%) 7d")
+    col6.metric("Est. Hours", f"{total_hours:,.1f}h",
+                delta=f"{delta_hours_7d:+.0f}h ({hours_last_7:.0f}h vs {hours_prev_7:.0f}h) 7d")
 
-    # Hrs/Day per Assignee (based on closed work in last 30 days ÷ working days)
-    last_30_closed = closed_tasks[closed_tasks["closed_date"] >= (now_ts - timedelta(days=30))]
-    working_days = 22  # approx working days in a month
-    if len(last_30_closed) > 0 and filtered["assignee"].nunique() > 0:
-        total_closed_hours_30d = last_30_closed["estimated_completion_time"].sum() / 60
-        n_assignees_active = last_30_closed["assignee"].nunique()
-        hrs_per_day = total_closed_hours_30d / (working_days * n_assignees_active)
-    else:
-        hrs_per_day = 0
+    # Hrs/Day (no arrow)
     col7.metric("Hrs/Day", f"{hrs_per_day:.1f}h",
-                delta=f"per person (30d avg)", delta_color="off")
+                delta=f"{total_closed_hours_45d:.0f}h ÷ {working_days}d ÷ {n_assignees_active} people" if len(last_45_closed) > 0 else "no data",
+                delta_color="off")
 
     # Info descriptions
     with st.expander("ℹ️ Metric Definitions"):
         st.markdown("""
-        - **Total Tasks** — All tasks matching the sidebar filters (date, client, assignee, status)
-        - **Open** — Tasks where status is not Done or Cancelled. Delta shows created tickets last 7 days vs prior 7 days (red = more incoming work)
-        - **Closed** — Tasks where status = Done. Delta shows closed tickets last 7 days vs prior 7 days (green = closing more)
-        - **Avg Turnaround** — Mean number of days from Created to Closed Date, with outliers removed using IQR method (values outside Q1-1.5×IQR / Q3+1.5×IQR and negative values are excluded). Delta shows median and mode for context.
-        - **Rush Tickets** — Tasks with the "Rush" label in Jira. Delta shows rush tickets created last 7 days vs prior 7 days (red = more rush requests)
-        - **Est. Hours** — Sum of "Time Spent in Minutes" field converted to hours across all filtered tasks. Delta shows estimated hours completed (closed) last 7 days vs prior 7 days.
+        - **Total Tasks** — All tasks matching the sidebar filters. Footnote shows tickets *created* last 7 days vs prior 7 days with % change (green = fewer created, red = more created).
+        - **Open** — Tasks where status is not Done or Cancelled. No footnote.
+        - **Closed** — Tasks where status = Done. Footnote shows tickets *closed* last 7 days vs prior 7 days with % change (green = closing more).
+        - **Avg Turnaround** — Mean business days from Created to Closed Date, with outliers removed using IQR method (values outside Q1-1.5×IQR / Q3+1.5×IQR and negative values excluded). Subtext shows median and mode.
+        - **Rush Tickets** — Tasks with the "Rush" label. Footnote shows rush tickets created last 7 days vs prior 7 days with % change (green = fewer rush, red = more rush).
+        - **Est. Hours** — Sum of "Time Spent in Minutes" field converted to hours across all filtered tasks. Footnote shows estimated hours completed (closed) last 7 days vs prior 7 days.
+        - **Hrs/Day** — Total closed hours in the last 45 calendar days ÷ business days (Mon-Fri) ÷ active assignees. Shows the formula breakdown: `hours ÷ days ÷ people`.
         """)
 
     st.divider()
@@ -444,13 +468,13 @@ with tab1:
 
     st.markdown(f"**Last {period_days} days** vs **prior {period_days} days**")
 
-    pc1, pc2, pc3, pc4, pc5, pc6 = st.columns(6)
+    pc1, pc2, pc3, pc4, pc5, pc6, pc7 = st.columns(7)
 
-    pc1.metric("Created", len(p1_tasks),
+    pc1.metric("Created", f"{len(p1_tasks):,}",
                delta=f"{len(p1_tasks) - len(p2_tasks):+d}", delta_color="inverse")
-    pc2.metric("Open", len(p1_open),
+    pc2.metric("Open", f"{len(p1_open):,}",
                delta=f"{len(p1_open) - len(p2_open):+d}", delta_color="inverse")
-    pc3.metric("Closed", len(p1_closed),
+    pc3.metric("Closed", f"{len(p1_closed):,}",
                delta=f"{len(p1_closed) - len(p2_closed):+d}")
 
     p1_avg = clean_turnaround(p1_closed["turnaround_days"]).mean() if len(p1_closed) > 0 else 0
@@ -458,13 +482,23 @@ with tab1:
     pc4.metric("Avg Turnaround", f"{p1_avg:.0f}d",
                delta=f"{p1_avg - p2_avg:+.0f}d", delta_color="inverse")
 
-    pc5.metric("Rush", len(p1_rush),
+    pc5.metric("Rush", f"{len(p1_rush):,}",
                delta=f"{len(p1_rush) - len(p2_rush):+d}", delta_color="inverse")
 
     p1_hours = p1_closed["estimated_completion_time"].sum() / 60
     p2_hours = p2_closed["estimated_completion_time"].sum() / 60
-    pc6.metric("Est. Hours", f"{p1_hours:.1f}h",
+    pc6.metric("Est. Hours", f"{p1_hours:,.1f}h",
                delta=f"{p1_hours - p2_hours:+.1f}h")
+
+    # Hrs/Day for period comparison
+    p1_biz_days = len(pd.bdate_range(start=p1_start, end=now))
+    p2_biz_days = len(pd.bdate_range(start=p2_start, end=p2_end))
+    p1_assignees = len([a for a in p1_closed["assignee"].unique() if "Scott" not in str(a)]) if len(p1_closed) > 0 else 1
+    p2_assignees = len([a for a in p2_closed["assignee"].unique() if "Scott" not in str(a)]) if len(p2_closed) > 0 else 1
+    p1_hrs_day = p1_hours / (max(p1_biz_days, 1) * max(p1_assignees, 1))
+    p2_hrs_day = p2_hours / (max(p2_biz_days, 1) * max(p2_assignees, 1))
+    pc7.metric("Hrs/Day", f"{p1_hrs_day:.1f}h",
+               delta=f"{p1_hrs_day - p2_hrs_day:+.1f}h")
 
     st.divider()
 
