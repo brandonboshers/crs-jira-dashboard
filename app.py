@@ -471,24 +471,24 @@ with tab1:
     pc1, pc2, pc3, pc4, pc5, pc6, pc7 = st.columns(7)
 
     pc1.metric("Created", f"{len(p1_tasks):,}",
-               delta=f"{len(p1_tasks) - len(p2_tasks):+d}", delta_color="inverse")
+               delta=f"{len(p1_tasks) - len(p2_tasks):+d} ({len(p1_tasks)} vs {len(p2_tasks)})", delta_color="inverse")
     pc2.metric("Open", f"{len(p1_open):,}",
-               delta=f"{len(p1_open) - len(p2_open):+d}", delta_color="inverse")
+               delta=f"{len(p1_open) - len(p2_open):+d} ({len(p1_open)} vs {len(p2_open)})", delta_color="inverse")
     pc3.metric("Closed", f"{len(p1_closed):,}",
-               delta=f"{len(p1_closed) - len(p2_closed):+d}")
+               delta=f"{len(p1_closed) - len(p2_closed):+d} ({len(p1_closed)} vs {len(p2_closed)})")
 
     p1_avg = clean_turnaround(p1_closed["turnaround_days"]).mean() if len(p1_closed) > 0 else 0
     p2_avg = clean_turnaround(p2_closed["turnaround_days"]).mean() if len(p2_closed) > 0 else 0
     pc4.metric("Avg Turnaround", f"{p1_avg:.0f}d",
-               delta=f"{p1_avg - p2_avg:+.0f}d", delta_color="inverse")
+               delta=f"{p1_avg - p2_avg:+.0f}d ({p1_avg:.0f}d vs {p2_avg:.0f}d)", delta_color="inverse")
 
     pc5.metric("Rush", f"{len(p1_rush):,}",
-               delta=f"{len(p1_rush) - len(p2_rush):+d}", delta_color="inverse")
+               delta=f"{len(p1_rush) - len(p2_rush):+d} ({len(p1_rush)} vs {len(p2_rush)})", delta_color="inverse")
 
     p1_hours = p1_closed["estimated_completion_time"].sum() / 60
     p2_hours = p2_closed["estimated_completion_time"].sum() / 60
     pc6.metric("Est. Hours", f"{p1_hours:,.1f}h",
-               delta=f"{p1_hours - p2_hours:+.1f}h")
+               delta=f"{p1_hours - p2_hours:+.1f}h ({p1_hours:.0f}h vs {p2_hours:.0f}h)")
 
     # Hrs/Day for period comparison
     p1_biz_days = len(pd.bdate_range(start=p1_start, end=now))
@@ -498,7 +498,7 @@ with tab1:
     p1_hrs_day = p1_hours / (max(p1_biz_days, 1) * max(p1_assignees, 1))
     p2_hrs_day = p2_hours / (max(p2_biz_days, 1) * max(p2_assignees, 1))
     pc7.metric("Hrs/Day", f"{p1_hrs_day:.1f}h",
-               delta=f"{p1_hrs_day - p2_hrs_day:+.1f}h")
+               delta=f"{p1_hrs_day - p2_hrs_day:+.1f}h ({p1_hrs_day:.1f}h vs {p2_hrs_day:.1f}h)")
 
     st.divider()
 
