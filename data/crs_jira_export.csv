@@ -1,4 +1,5 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-1842,SHBP - Metrics on Successful Calls,Backlog,Brandon Boshers,Jason Skinner,2026-06-03T12:06:45.368-0400,,one-time,SHBP,240.0,Coaching,,Rush,
 CRS-1840,CareFirst- Smart Dollar and Ovia Billing Report,Backlog,Dave Schardt,Dave Schardt,2026-06-02T17:36:42.312-0400,,monthly,Client Not Listed,60.0,Billing,2036-07-15,,CRS-81
 CRS-1839,CareFirst Billing - Ovia,Backlog,Dave Schardt,Dave Schardt,2026-06-02T17:36:39.840-0400,,monthly,CareFirst,60.0,Billing,2036-07-15,,CRS-84
 CRS-1838,SHBP- Monthly Billing Deliverables,Backlog,Brandon Boshers,Brandon Boshers,2026-06-02T17:36:35.279-0400,,monthly,SHBP,780.0,Billing,2040-07-31,,CRS-120
@@ -24,7 +25,7 @@ CRS-1816,BCBS AZ- Run Weekly RAT and REG History Report,Backlog,Brandon Boshers,
 CRS-1814,Tiered Incentive Aggregate Report CareFirst - Navy Federal Credit Union,Backlog,Brandon Boshers,Carl Veenendaal,2026-05-30T06:13:02.156-0400,,monthly,CareFirst,30.0,Rewards and Incentives,2026-11-07,,CRS-1031
 CRS-1813,Cencora-  Weekly Tobacco Report,Backlog,Brandon Boshers,Marynda Eich,2026-05-30T06:12:59.122-0400,,weekly,Cencora,25.0,Rewards and Incentives,2026-06-05,,CRS-1298
 CRS-1812,CareFirst Weekly Mercy Health May Steps Challenge,Backlog,Dave Schardt,Dave Schardt,2026-05-30T06:12:54.395-0400,,weekly,CareFirst,20.0,Challenges,2026-06-05,,CRS-1758
-CRS-1811,"Next Era- Please provide the number of members who attested to the ""Attend a Mental Health Awareness Month Event""   ",Backlog,Adam Ibrahim,Neely Niemann,2026-05-29T15:49:25.746-0400,,one-time,NextEra,,Rewards and Incentives,,Rush,
+CRS-1811,"Next Era- Please provide the number of members who attested to the ""Attend a Mental Health Awareness Month Event""   ",In Progress,Adam Ibrahim,Neely Niemann,2026-05-29T15:49:25.746-0400,,one-time,NextEra,,Rewards and Incentives,,Rush,
 CRS-1810,CareFirst- Weekly Tiered Incentive Aggregate Report CareFirst - Navy Federal Credit Union,Backlog,Brandon Boshers,Brandon Boshers,2026-05-29T06:13:06.263-0400,,monthly,CareFirst,30.0,Rewards and Incentives,2026-11-07,,CRS-146
 CRS-1808,CareFirst Billing - Biometrics,Done,Dave Schardt,Dave Schardt,2026-05-29T06:12:46.678-0400,2026-06-02,monthly,CareFirst,240.0,Billing,2040-08-01,,CRS-363
 CRS-1807,CareFirst - ADR Redemption Report Biweekly Ftp Drop,Backlog,Adam Ibrahim,Adam Ibrahim,2026-05-29T06:12:39.202-0400,,biweekly,,,Rewards and Incentives,2039-02-24,,CRS-1324
