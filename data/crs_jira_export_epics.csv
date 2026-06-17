@@ -1,5 +1,5 @@
 key,summary,assignee,reporter,created,frequency,client,estimated_completion_time,task_type,recurring_end_date,recurring_start_date
-CRS-1827,Loews Weekly Custom Report,Brandon Boshers,Luke Staebell,2026-06-02T15:24:50.288-0400,weekly,Loews Hotels,45.0,Rewards and Incentives,2027-01-05,2026-06-08
+CRS-1827,Loews Weekly Custom Report,Brandon Boshers,Luke Staebell,2026-06-02T15:24:50.288-0400,weekly,Loews Hotels,300.0,Rewards and Incentives,2027-01-05,2026-06-08
 CRS-1758,CareFirst Weekly Mercy Health May Steps Challenge,Dave Schardt,Dave Schardt,2026-05-18T10:35:32.981-0400,weekly,CareFirst,20.0,Challenges,2026-06-05,2026-05-15
 CRS-1744,BCI Refire Error 5.1.26 - Update and Evaluate Loss,Brandon Boshers,Andrew Taylor,2026-05-14T13:04:26.224-0400,monthly,BCI,360.0,Rewards and Incentives,2027-01-14,2026-08-14
 CRS-1654,AutoZone 2026 Monthly Reward Report,Brandon Boshers,Christy Wilson,2026-04-27T09:26:16.446-0400,monthly,AutoZone,45.0,Rewards and Incentives,2032-05-01,2026-05-15
@@ -108,7 +108,7 @@ CRS-84,CareFirst Billing - Ovia,Dave Schardt,Dave Schardt,2025-07-29T17:47:49.43
 CRS-82,CareFirst Weekly Claims,Dave Schardt,Dave Schardt,2025-07-29T17:46:29.678-0400,weekly,CareFirst,10.0,Billing,2036-07-15,2025-08-01
 CRS-81,Smart Dollar and Ovia Billing Report,Dave Schardt,Dave Schardt,2025-07-29T17:45:15.898-0400,monthly,Client Not Listed,60.0,Billing,2036-07-15,2025-08-05
 CRS-80,CareFirst Top Employers (quaterly report),Dave Schardt,Dave Schardt,2025-07-29T17:43:30.018-0400,quarterly,CareFirst,180.0,Custom,2036-07-15,2025-09-15
-CRS-79,Learning Care Group - Quarterly Tax Incentive Report,Dave Schardt,Dave Schardt,2025-07-29T17:42:00.763-0400,quarterly,Learning Care Group,120.0,Custom,2036-07-15,2025-09-15
+CRS-79,Learning Care Group - Quarterly Tax Incentive Report,Dave Schardt,Dave Schardt,2025-07-29T17:42:00.763-0400,quarterly,Learning Care Group,120.0,Custom,2026-06-15,2025-09-15
 CRS-78,Paramount Detail Points Report - Member Level,Dave Schardt,Dave Schardt,2025-07-29T17:37:00.268-0400,monthly,Paramount / Pro Medica,30.0,Rewards and Incentives,2030-07-15,2025-08-04
 CRS-77,Delta DWR Redemptions Reporting,Dave Schardt,Dave Schardt,2025-07-29T17:35:41.146-0400,monthly,Delta,30.0,Digital Engagement,2030-07-15,2025-08-11
 CRS-76,Delta Air DHR and DWR Activity Report,Dave Schardt,Dave Schardt,2025-07-29T17:35:04.350-0400,monthly,Delta,20.0,Digital Engagement,2030-07-15,2025-08-11

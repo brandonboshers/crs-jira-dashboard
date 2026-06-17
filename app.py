@@ -131,7 +131,6 @@ st.sidebar.title("🔍 Filters")
 min_date = tasks["created"].min().date()
 max_date = tasks["created"].max().date()
 default_start = max((pd.Timestamp.now() - timedelta(days=365)).date(), min_date)
-date_field = st.sidebar.radio("Date filter applies to:", ["Created Date", "Closed Date"], horizontal=True)
 date_range = st.sidebar.date_input("Date Range", value=(default_start, max_date))
 
 st.sidebar.divider()
@@ -165,16 +164,31 @@ if rush_filter == "Rush Only":
 elif rush_filter == "Non-Rush":
     filtered = filtered[~filtered["labels"].str.contains("Rush", case=False, na=False)]
 if len(date_range) == 2:
-    if date_field == "Created Date":
-        filtered = filtered[
-            (filtered["created"].dt.date >= date_range[0]) &
-            (filtered["created"].dt.date <= date_range[1])
-        ]
-    else:
-        filtered = filtered[
-            (filtered["closed_date"].dt.date >= date_range[0]) &
-            (filtered["closed_date"].dt.date <= date_range[1])
-        ]
+    filtered = filtered[
+        (filtered["created"].dt.date >= date_range[0]) &
+        (filtered["created"].dt.date <= date_range[1])
+    ]
+
+# Closed tasks always filtered by closed_date within range (independent of created filter)
+if len(date_range) == 2:
+    closed_in_range = tasks.copy()
+    if selected_assignees:
+        closed_in_range = closed_in_range[closed_in_range["assignee"].isin(selected_assignees)]
+    if selected_statuses:
+        closed_in_range = closed_in_range[closed_in_range["status"].isin(selected_statuses)]
+    if selected_frequencies:
+        closed_in_range = closed_in_range[closed_in_range["frequency"].isin(selected_frequencies)]
+    if rush_filter == "Rush Only":
+        closed_in_range = closed_in_range[closed_in_range["labels"].str.contains("Rush", case=False, na=False)]
+    elif rush_filter == "Non-Rush":
+        closed_in_range = closed_in_range[~closed_in_range["labels"].str.contains("Rush", case=False, na=False)]
+    closed_in_range = closed_in_range[
+        (closed_in_range["status"] == "Done") &
+        (closed_in_range["closed_date"].dt.date >= date_range[0]) &
+        (closed_in_range["closed_date"].dt.date <= date_range[1])
+    ]
+else:
+    closed_in_range = filtered[filtered["status"] == "Done"]
 
 # ---------------------------------------------------------------------------
 # Tab Layout
@@ -189,7 +203,7 @@ with tab1:
 
     # KPI row
     open_tasks = filtered[~filtered["status"].isin(["Done", "Cancelled"])]
-    closed_tasks = filtered[filtered["status"] == "Done"]
+    closed_tasks = closed_in_range  # Always based on closed_date within range
     rush_tasks = filtered[filtered["labels"].str.contains("Rush", case=False, na=False)]
 
     col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
@@ -459,8 +473,8 @@ with tab1:
 
     p1_tasks = filtered[(filtered["created"] >= p1_start)]
     p2_tasks = filtered[(filtered["created"] >= p2_start) & (filtered["created"] < p2_end)]
-    p1_closed = p1_tasks[p1_tasks["status"] == "Done"]
-    p2_closed = p2_tasks[p2_tasks["status"] == "Done"]
+    p1_closed = closed_in_range[closed_in_range["closed_date"] >= p1_start]
+    p2_closed = closed_in_range[(closed_in_range["closed_date"] >= p2_start) & (closed_in_range["closed_date"] < p2_end)]
     p1_open = p1_tasks[~p1_tasks["status"].isin(["Done", "Cancelled"])]
     p2_open = p2_tasks[~p2_tasks["status"].isin(["Done", "Cancelled"])]
     p1_rush = p1_tasks[p1_tasks["labels"].str.contains("Rush", case=False, na=False)]
@@ -512,8 +526,8 @@ with tab1:
 
         rush_all = filtered[filtered["labels"].str.contains("Rush", case=False, na=False)]
         non_rush_all = filtered[~filtered["labels"].str.contains("Rush", case=False, na=False)]
-        rush_closed = rush_all[rush_all["status"] == "Done"]
-        non_rush_closed = non_rush_all[non_rush_all["status"] == "Done"]
+        rush_closed = closed_in_range[closed_in_range["labels"].str.contains("Rush", case=False, na=False)]
+        non_rush_closed = closed_in_range[~closed_in_range["labels"].str.contains("Rush", case=False, na=False)]
 
         total_rush = len(rush_all)
         total_non = len(non_rush_all)
@@ -545,8 +559,8 @@ with tab1:
 
         recurring_all = filtered[filtered["work_type"] == "Recurring"]
         adhoc_all = filtered[filtered["work_type"] == "Adhoc"]
-        recurring_closed = recurring_all[recurring_all["status"] == "Done"]
-        adhoc_closed = adhoc_all[adhoc_all["status"] == "Done"]
+        recurring_closed = closed_in_range[closed_in_range["work_type"] == "Recurring"]
+        adhoc_closed = closed_in_range[closed_in_range["work_type"] == "Adhoc"]
 
         total_recurring = len(recurring_all)
         total_adhoc = len(adhoc_all)
@@ -581,16 +595,20 @@ with tab1:
     st.subheader("Team Performance by Assignee")
 
     # Build assignee summary table
-    assignee_summary = filtered.groupby("assignee").agg(
+    assignee_open = filtered.groupby("assignee").agg(
         total=("key", "count"),
         open_count=("status", lambda x: (~x.isin(["Done", "Cancelled"])).sum()),
-        closed_count=("status", lambda x: (x == "Done").sum()),
         recurring_count=("work_type", lambda x: (x == "Recurring").sum()),
         adhoc_count=("work_type", lambda x: (x == "Adhoc").sum()),
         rush_count=("labels", lambda x: x.str.contains("Rush", case=False, na=False).sum()),
         est_hours=("estimated_completion_time", lambda x: x.sum() / 60),
         avg_turnaround=("turnaround_days", lambda x: clean_turnaround(x).mean()),
     ).reset_index()
+    assignee_closed_counts = closed_in_range.groupby("assignee").agg(
+        closed_count=("key", "count"),
+    ).reset_index()
+    assignee_summary = assignee_open.merge(assignee_closed_counts, on="assignee", how="left")
+    assignee_summary["closed_count"] = assignee_summary["closed_count"].fillna(0).astype(int)
     assignee_summary["completion_rate"] = (assignee_summary["closed_count"] / assignee_summary["total"] * 100).round(1)
     assignee_summary["avg_turnaround"] = assignee_summary["avg_turnaround"].round(1)
     assignee_summary["est_hours"] = assignee_summary["est_hours"].round(1)
@@ -701,12 +719,17 @@ with tab2:
 
     # Tasks by client
     st.subheader("Tasks by Client")
-    client_summary = filtered.groupby("client").agg(
+    # Open tasks from filtered (by created date), closed tasks from closed_in_range (by closed date)
+    client_open = filtered.groupby("client").agg(
         total_tasks=("key", "count"),
         open_tasks=("status", lambda x: (x.isin(["Backlog", "In Progress", "To Do"])).sum()),
-        closed_tasks=("status", lambda x: (x == "Done").sum()),
         avg_turnaround=("turnaround_days", lambda x: clean_turnaround(x).mean()),
     ).reset_index()
+    client_closed = closed_in_range.groupby("client").agg(
+        closed_tasks=("key", "count"),
+    ).reset_index()
+    client_summary = client_open.merge(client_closed, on="client", how="left")
+    client_summary["closed_tasks"] = client_summary["closed_tasks"].fillna(0).astype(int)
     client_summary["completion_rate"] = (
         client_summary["closed_tasks"] / client_summary["total_tasks"] * 100
     ).round(1)
@@ -865,7 +888,7 @@ with tab3:
     # Trends: Tickets closed per member over time
     # ---------------------------------------------------------------------------
     st.subheader("Tickets Closed per Member (Weekly Trend)")
-    closed_with_date = filtered[filtered["closed_date"].notna()].copy()
+    closed_with_date = closed_in_range[closed_in_range["closed_date"].notna()].copy()
     if len(closed_with_date) > 0:
         closed_with_date["closed_week"] = closed_with_date["closed_date"].dt.to_period("W").dt.start_time
         weekly_closed = closed_with_date.groupby(["assignee", "closed_week"]).agg(
