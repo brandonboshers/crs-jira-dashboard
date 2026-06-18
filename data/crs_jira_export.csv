@@ -1,4 +1,5 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-1936,SHBP: Annual metrics for activities,Backlog,Brandon Boshers,Brandeus Davis,2026-06-18T06:54:13.474-0400,,annual,SHBP,120.0,Rewards and Incentives,2035-10-01,,CRS-691
 CRS-1935,SHBP- Real Age Completion Test,Backlog,Brandon Boshers,Brandeus Davis,2026-06-17T08:45:15.654-0400,,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-1934,Delta Division by Department Summary,Backlog,Dave Schardt,Dave Schardt,2026-06-17T08:38:53.004-0400,,monthly,Delta,30.0,Digital Engagement,2030-07-15,,CRS-74
 CRS-1933,Delta Air DHR and DWR Rewards Report,Backlog,Dave Schardt,Dave Schardt,2026-06-17T08:38:50.937-0400,,monthly,Delta,30.0,Rewards and Incentives,2030-07-15,,CRS-75
@@ -35,11 +36,11 @@ CRS-1902,CareFirst - ADR Redemption Report Biweekly Ftp Drop,Backlog,Adam Ibrahi
 CRS-1901,CareFirst WDM Weekly Billing Counts,Backlog,Dave Schardt,Dave Schardt,2026-06-17T06:01:28.271-0400,,weekly,CareFirst,30.0,Coaching,2026-12-28,,CRS-1443
 CRS-1900,AutoZone 2026 Monthly Reward Report,Backlog,Brandon Boshers,Christy Wilson,2026-06-17T06:01:24.166-0400,,monthly,AutoZone,45.0,Rewards and Incentives,2032-05-01,,CRS-1654
 CRS-1899,Loews Weekly Custom Report,Backlog,Brandon Boshers,Luke Staebell,2026-06-17T06:01:21.105-0400,,weekly,Loews Hotels,300.0,Rewards and Incentives,2027-01-05,,CRS-1827
-CRS-1898,Sharecare Reporting needed for Benefit Plan Filings 2026,Backlog,Scott Mann,Neely Niemann,2026-06-16T17:25:16.361-0400,2026-01-23,annual,Delta,120.0,Billing,,Rush,
+CRS-1898,Delta- Sharecare Reporting needed for Benefit Plan Filings 2026,Backlog,Dave Schardt,Neely Niemann,2026-06-16T17:25:16.361-0400,2026-01-23,annual,Delta,120.0,Billing,,Rush,
 CRS-1897,CTQ OR Enrollment Data,Backlog,Scott Mann,Brooke Lesser,2026-06-16T13:47:12.826-0400,,one-time,HealthNet - OR,,Digital Therapeutics,,"business-form, business-form-97",
 CRS-1896,Sundt strong DPR changes & new auto report,Backlog,Scott Mann,Brooke Lesser,2026-06-16T13:22:55.044-0400,,weekly,BCBSAZ,,Health Insights,,"business-form, business-form-97",
-CRS-1895,Transamerica - 2025 Sword Completion Data,Backlog,Scott Mann,Danielle Teel,2026-06-16T13:20:44.511-0400,,one-time,Transamerica,,Rewards and Incentives,,Rush,
-CRS-1894,ERN Scale Use,Stakeholder Review,Brandon Boshers,Ginger Maloy,2026-06-15T10:55:57.243-0400,,one-time,SOT,480.0,Digital Therapeutics,,Rush,
+CRS-1895,Transamerica - 2025 Sword Completion Data,Backlog,Brandon Boshers,Danielle Teel,2026-06-16T13:20:44.511-0400,,one-time,Transamerica,,Rewards and Incentives,,Rush,
+CRS-1894,ERN Scale Use,Done,Brandon Boshers,Ginger Maloy,2026-06-15T10:55:57.243-0400,2026-06-17,one-time,SOT,510.0,Digital Therapeutics,,Rush,
 CRS-1893,LAFRA: Platform engagement by gender and age,Backlog,Brandon Boshers,Andrea Chait,2026-06-12T19:09:44.267-0400,,one-time,LAFRA,,Digital Engagement,,"business-form, business-form-97",
 CRS-1892,New June BCBSAZ Rewards Groups,Backlog,Scott Mann,Brooke Lesser,2026-06-12T17:04:51.935-0400,,monthly,BCBSAZ,,Rewards and Incentives,,"business-form, business-form-97",
 CRS-1891,"Amassador Registration, Engagement and Super Users ",Backlog,Scott Mann,Christy Wilson,2026-06-12T17:04:30.337-0400,,quarterly,Fresenius,,Digital Engagement,,"business-form, business-form-97",
@@ -1192,7 +1193,7 @@ CRS-696,Monthly Wellhub Activity Ingestion,Done,Brandon Boshers,Andrea Chait,202
 CRS-695,CareFirst - Care Management IDS Process - Monthly,Done,Adam Ibrahim,Adam Ibrahim,2025-10-24T05:00:24.047-0400,2025-11-24,monthly,CareFirst,360.0,Care Management,2040-07-31,,CRS-161
 CRS-694,CareFirst- Care Management: Omada Line of Business Breakouts Activity/Projections,Done,Dave Schardt,Dave Schardt,2025-10-23T17:36:35.071-0400,2025-11-10,monthly,CareFirst,45.0,Billing,,Rush,
 CRS-693,Carefirst - OMADA IDS File,Done,Adam Ibrahim,Adam Ibrahim,2025-10-23T17:01:37.607-0400,2025-11-04,one-time,,180.0,Care Management,,Rush,
-CRS-692,SHBP: Annual metrics for activities,Backlog,Brandon Boshers,Andrea Chait,2025-10-23T05:00:13.091-0400,,annual,SHBP,120.0,Rewards and Incentives,2035-10-01,,CRS-691
+CRS-692,SHBP: Annual metrics for activities,Done,Brandon Boshers,Brandeus Davis,2025-10-23T05:00:13.091-0400,2026-06-18,annual,SHBP,120.0,Rewards and Incentives,2035-10-01,,CRS-691
 CRS-690,CareFirst Billing - Diabetes Screening logic update prior to Oct. close,Done,Dave Schardt,Dave Schardt,2025-10-22T16:42:16.306-0400,2025-11-06,one-time,CareFirst,120.0,Billing,,Rush,
 CRS-689,CareFirst - MedStar RealAge Giveaway Winner List Extract,Done,Adam Ibrahim,Brook Baldwin,2025-10-22T15:46:58.281-0400,2025-11-17,one-time,CareFirst,60.0,Marketing,,"business-form, business-form-97",
 CRS-688,Catch Up Q2-Q3,Done,Adam Ibrahim,Andrew Taylor,2025-10-22T14:38:13.369-0400,2025-10-30,one-time,BCI,15.0,Custom,,Rush,
