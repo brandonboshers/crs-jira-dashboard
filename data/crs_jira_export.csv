@@ -1,4 +1,5 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-1938,CareFirst - 2026 Nestle August Destination Challenge Email Extracts,Backlog,Scott Mann,Brook Baldwin,2026-06-18T14:15:01.984-0400,,one-time,CareFirst,,Marketing,,"business-form, business-form-97",
 CRS-1936,SHBP: Annual metrics for activities,Backlog,Brandon Boshers,Brandeus Davis,2026-06-18T06:54:13.474-0400,,annual,SHBP,120.0,Rewards and Incentives,2035-10-01,,CRS-691
 CRS-1935,SHBP- Real Age Completion Test,Backlog,Brandon Boshers,Brandeus Davis,2026-06-17T08:45:15.654-0400,,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-1934,Delta Division by Department Summary,Backlog,Dave Schardt,Dave Schardt,2026-06-17T08:38:53.004-0400,,monthly,Delta,30.0,Digital Engagement,2030-07-15,,CRS-74
