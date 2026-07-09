@@ -1,4 +1,5 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2025,NEE would like a report of US/Canada health incentive non-completions,Backlog,Scott Mann,Neely Niemann,2026-07-08T16:58:18.405-0400,,one-time,NextEra,,Rewards and Incentives,,Rush,
 CRS-2022,"CareFirst - ERN Monthly Billing (DPP, WL, ME)",Backlog,Adam Ibrahim,Adam Ibrahim,2026-07-08T07:12:58.134-0400,,monthly,CareFirst,150.0,Billing,2040-08-22,,CRS-222
 CRS-2020,Cencora (Amerisource Bergen prior) Challenge (Location) Report,Backlog,Dave Schardt,Dave Schardt,2026-07-08T07:12:48.535-0400,,monthly,Cencora,30.0,Challenges,2037-08-14,,CRS-362
 CRS-2019,Trelleborg - 2026 Medical Plan Rewards Program,Backlog,Adam Ibrahim,Marynda Eich,2026-07-08T07:12:42.485-0400,,biweekly,Trelleborg,30.0,Rewards and Incentives,2040-12-31,,CRS-956
@@ -31,8 +32,8 @@ CRS-1989,CareFirst Ovia Incentive Tracking File,Backlog,Dave Schardt,Dave Schard
 CRS-1988,CareFirst Monthly PG's (RealAge and Coaching),Backlog,Dave Schardt,Dave Schardt,2026-07-01T06:29:11.533-0400,,monthly,CareFirst,60.0,Digital Engagement,2036-07-15,,CRS-90
 CRS-1987,CareFirst - Care Management Forecast,Backlog,Adam Ibrahim,Adam Ibrahim,2026-07-01T06:12:27.296-0400,,biweekly,CareFirst,20.0,Care Management,2040-07-26,,CRS-162
 CRS-1985,CareFirst WDM Weekly Billing Counts,Done,Dave Schardt,Dave Schardt,2026-07-01T06:12:05.781-0400,2026-07-06,weekly,CareFirst,30.0,Coaching,2026-12-28,,CRS-1443
-CRS-1984,Request for report of biometric non-completers,Backlog,Brandon Boshers,Luke Staebell,2026-06-30T15:02:43.369-0400,,one-time,Chubb,,Custom,,Rush,
-CRS-1983,AEP Coaching & CTQ Completion Report for AEP Tobacco Surcharge 2026,Backlog,Adam Ibrahim,Deborah Prusaczyk,2026-06-30T13:18:07.940-0400,,one-time,AEP,,Coaching,,Rush,
+CRS-1984,Request for report of biometric non-completers,Done,Brandon Boshers,Luke Staebell,2026-06-30T15:02:43.369-0400,2026-07-09,one-time,Chubb,60.0,Custom,,Rush,
+CRS-1983,AEP Coaching & CTQ Completion Report for AEP Tobacco Surcharge 2026,Stakeholder Review,Adam Ibrahim,Deborah Prusaczyk,2026-06-30T13:18:07.940-0400,,one-time,AEP,60.0,Coaching,,Rush,
 CRS-1982,Omada billing research-true-up,In Progress,Dave Schardt,Dave Schardt,2026-06-30T11:13:17.801-0400,,one-time,CareFirst,,Billing,,Rush,
 CRS-1981,SHBP- Real Age Completion Test,Done,Brandon Boshers,Brandeus Davis,2026-06-30T06:31:53.976-0400,2026-07-06,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-1980,CareFirst Weekly Claims,Done,Dave Schardt,Dave Schardt,2026-06-30T06:31:47.257-0400,2026-06-30,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
@@ -53,7 +54,7 @@ CRS-1961,Fresenius- Need Fresenius GUID's to be applied ,Done,Adam Ibrahim,Chris
 CRS-1960,Custom QBR Tasks,Backlog,Brandon Boshers,Scott Mann,2026-06-25T06:48:46.194-0400,,quarterly,CareFirst,210.0,QBR,2040-07-31,,CRS-128
 CRS-1959,Weekly Coaching Progress,Done,Brandon Boshers,Craig Petty,2026-06-25T06:48:36.916-0400,2026-06-29,weekly,SHBP,160.0,Coaching,2040-07-31,,CRS-150
 CRS-1957,Loews Weekly Custom Report,Done,Brandon Boshers,Luke Staebell,2026-06-25T06:13:35.705-0400,2026-06-29,weekly,Loews Hotels,300.0,Rewards and Incentives,2027-01-05,,CRS-1827
-CRS-1956,BCBS AZ- SUMCO June DPR Report ,Backlog,Brandon Boshers,Brooke Lesser,2026-06-24T17:53:58.613-0400,,monthly,BCBSAZ,,Rewards and Incentives,,"business-form, business-form-97",
+CRS-1956,BCBS AZ- SUMCO June DPR Report ,Done,Brandon Boshers,Brooke Lesser,2026-06-24T17:53:58.613-0400,2026-07-08,monthly,BCBSAZ,90.0,Rewards and Incentives,,"business-form, business-form-97",
 CRS-1955,CareFirst - Q3 2026 Ovia Email,Backlog,Dave Schardt,Brook Baldwin,2026-06-24T15:14:42.210-0400,,one-time,CareFirst,,Marketing,,"business-form, business-form-97",
 CRS-1954,CareFirst - MedStar July 2026 Destination Challenge Email Extracts,Cancelled,Adam Ibrahim,Brook Baldwin,2026-06-23T17:03:19.846-0400,,one-time,CareFirst,,Marketing,,"business-form, business-form-97",
 CRS-1953,Koch Medically Enrolled Address and Phone List,Done,Brandon Boshers,Molly Whalen,2026-06-23T10:42:54.278-0400,2026-06-25,one-time,Koch,240.0,Advocacy,,Rush,
@@ -438,9 +439,9 @@ CRS-1544,CareFirst WDM Weekly Billing Counts,Done,Dave Schardt,Dave Schardt,2026
 CRS-1543,CareFirst Billing File updates,Done,Dave Schardt,Dave Schardt,2026-04-07T05:00:11.272-0400,2026-04-08,monthly,CareFirst,90.0,Billing,2030-04-05,,CRS-1540
 CRS-1542,CareFirst WDM billing Enrollment vs Care Call Breakouts,Done,Dave Schardt,Dave Schardt,2026-04-06T11:36:01.969-0400,2026-05-28,one-time,CareFirst,60.0,Billing,,Rush,
 CRS-1541,CF FEP future coaching appt reporting,Done,Dave Schardt,Dave Schardt,2026-04-06T11:09:12.497-0400,2026-04-08,one-time,CareFirst,180.0,Coaching,,Rush,
-CRS-1539,Wellstar: final counts of 2024 screening activity,Stakeholder Review,Brandon Boshers,Andrea Chait,2026-04-06T10:21:54.444-0400,,one-time,Wellstar,60.0,Rewards and Incentives,,"business-form, business-form-97",
-CRS-1538,Wellstar: final counts of 2025 screening activity,Stakeholder Review,Brandon Boshers,Andrea Chait,2026-04-06T10:20:15.132-0400,,one-time,Wellstar,60.0,Rewards and Incentives,,"business-form, business-form-97",
-CRS-1537,Wellstar: final count of members who maxed out 2025 points,Stakeholder Review,Brandon Boshers,Andrea Chait,2026-04-06T09:36:33.101-0400,,one-time,Wellstar,60.0,Rewards and Incentives,,"business-form, business-form-97",
+CRS-1539,Wellstar: final counts of 2024 screening activity,Done,Brandon Boshers,Andrea Chait,2026-04-06T10:21:54.444-0400,2026-07-08,one-time,Wellstar,60.0,Rewards and Incentives,,"business-form, business-form-97",
+CRS-1538,Wellstar: final counts of 2025 screening activity,Done,Brandon Boshers,Andrea Chait,2026-04-06T10:20:15.132-0400,2026-07-08,one-time,Wellstar,60.0,Rewards and Incentives,,"business-form, business-form-97",
+CRS-1537,Wellstar: final count of members who maxed out 2025 points,Done,Brandon Boshers,Andrea Chait,2026-04-06T09:36:33.101-0400,2026-07-08,one-time,Wellstar,60.0,Rewards and Incentives,,"business-form, business-form-97",
 CRS-1536,2025 Wellstar Program Report - Final Screening Activity,Done,Brandon Boshers,Andrea Chait,2026-04-06T05:00:09.902-0400,2026-04-06,monthly,Wellstar,30.0,Rewards and Incentives,2040-07-31,,CRS-1535
 CRS-1534,SHBP- Real Age Completion Test,Done,Brandon Boshers,Brandeus Davis,2026-04-04T05:01:24.392-0400,2026-04-10,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-1533,CareFirst- Smart Dollar and Ovia Billing Report,Done,Dave Schardt,Dave Schardt,2026-04-04T05:01:18.049-0400,2026-05-08,monthly,Client Not Listed,60.0,Billing,2036-07-15,,CRS-81
