@@ -1,4 +1,7 @@
 key,summary,assignee,reporter,created,frequency,client,estimated_completion_time,task_type,recurring_end_date,recurring_start_date
+CRS-2086,CareFirst BCPS and MTA PAR reporting,Dave Schardt,Dave Schardt,2026-07-14T17:18:39.012-0400,quarterly,CareFirst,,Coaching,2030-07-15,2026-07-15
+CRS-2085,CareFirst- State of Maryland DM Utilization + SLEOLA Quarterly Member lists,Dave Schardt,Dave Schardt,2026-07-14T17:13:20.184-0400,quarterly,CareFirst,60.0,Coaching,2030-07-15,2026-07-15
+CRS-2083,CareFirst- State of Maryland Goals and Goal Categories,Dave Schardt,Dave Schardt,2026-07-14T16:19:31.427-0400,quarterly,CareFirst,,Coaching,2030-07-15,2026-07-15
 CRS-2024,BCBS AZ- Sundt strong DPR - Weekly,Brandon Boshers,Brooke Lesser,2026-07-08T16:35:20.473-0400,weekly,BCBSAZ,15.0,Rewards and Incentives,2027-07-02,2026-07-10
 CRS-2023,Carefirst - Monthly ADR Rewards Invoicing ,Adam Ibrahim,Adam Ibrahim,2026-07-08T15:41:25.448-0400,monthly,CareFirst,220.0,Rewards and Incentives,2038-07-28,2026-07-08
 CRS-1940,Wellstar: Response data on Financial Assessment,Brandon Boshers,Andrea Chait,2026-06-19T09:32:46.857-0400,quarterly,Wellstar,90.0,Rewards and Incentives,2027-10-15,2026-10-12
