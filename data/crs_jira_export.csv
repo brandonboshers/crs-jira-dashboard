@@ -1,4 +1,7 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2179,Reporting Naming Convention,Backlog,Scott Mann,Brooke Lesser,2026-07-30T18:09:58.051-0400,,one-time,BCBSAZ,,Rewards and Incentives,,Rush,
+CRS-2178,Weekly Challenge report,Backlog,Scott Mann,Marynda Eich,2026-07-30T15:13:58.954-0400,,weekly,Lennar,,Challenges,,"business-form, business-form-97",
+CRS-2177,CareFirst - Care Management risk buckets analysis,Backlog,Adam Ibrahim,Adam Ibrahim,2026-07-30T12:20:30.289-0400,,one-time,CareFirst,,Care Management,,,
 CRS-2176,Lennar Biweekly GLP1 Marketing Email - Temp Custom Process,Backlog,Brandon Boshers,Marynda Eich,2026-07-30T09:29:19.441-0400,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-137
 CRS-2175,CareFirst - Care Management Billing File Review Process,Backlog,Adam Ibrahim,Adam Ibrahim,2026-07-30T09:29:01.977-0400,,monthly,CareFirst,200.0,Billing,2040-08-17,,CRS-358
 CRS-2174,PSHP Medicaid Term 08/13/2026,Backlog,Scott Mann,Michelle Martin,2026-07-29T11:26:48.210-0400,2026-03-31,one-time,Montefiore Health System,15.0,Billing,,"PSHPGA, Termination",
@@ -36,7 +39,7 @@ CRS-2143,CareFirst - ADR Redemption Report Biweekly Ftp Drop,Backlog,Adam Ibrahi
 CRS-2142,"LAFRA: members with 10+ Wellhub ""Onsite"" visits per month (Jan-May 2026)",Backlog,Brandon Boshers,Andrea Chait,2026-07-24T13:06:50.654-0400,,monthly,LAFRA,,Fitness,,"business-form, business-form-97",
 CRS-2141, HealthNet OR- DTx/Coaching Data Needed for Health Net OR - Q2,Done,Brandon Boshers,Andrew Taylor,2026-07-23T16:54:02.748-0400,2026-07-29,one-time,HealthNet - OR,60.0,Digital Therapeutics,,Rush,
 CRS-2140,CareFirst- Revision to Wellness Coaching Billing Business Rules to Exclude Enrollment Calls Not Delivered by Coach or Clinician - RUSH,Backlog,Dave Schardt,Scott Mann,2026-07-23T15:58:45.263-0400,,one-time,CareFirst,,Billing,,,
-CRS-2139,CareFirst- July Coaching Enrolled w/o Subsequent Care Call Completed To-Date RUSH,Stakeholder Review,Dave Schardt,Scott Mann,2026-07-23T15:37:49.663-0400,,one-time,CareFirst,360.0,Coaching,,Rush,
+CRS-2139,CareFirst- July Coaching Enrolled w/o Subsequent Care Call Completed To-Date RUSH,Done,Dave Schardt,Scott Mann,2026-07-23T15:37:49.663-0400,2026-07-30,one-time,CareFirst,360.0,Coaching,,Rush,
 CRS-2138,"Combine Attemptable, Attempted and Contacted metrics for DM and LM and research goals counts",Backlog,Brandon Boshers,Dave Schardt,2026-07-23T13:17:58.173-0400,,one-time,CareFirst,,Custom,,Rush,
 CRS-2137,SHBP- Real Age Completion Test,Done,Brandon Boshers,Brandeus Davis,2026-07-23T12:05:35.354-0400,2026-07-27,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-2136,CareFirst Weekly Claims,Done,Dave Schardt,Dave Schardt,2026-07-23T12:05:28.128-0400,2026-07-24,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
@@ -155,7 +158,7 @@ CRS-2004,CareFirst Billing - Omada,Backlog,Dave Schardt,Dave Schardt,2026-07-03T
 CRS-2002,CareFirst WDM Billing,Backlog,Dave Schardt,Dave Schardt,2026-07-03T06:16:57.676-0400,,monthly,CareFirst,60.0,Billing,2040-08-27,,CRS-274
 CRS-2001,CareFirst - Monthly Omada file transfer,Backlog,Dave Schardt,Dave Schardt,2026-07-03T06:16:48.923-0400,,monthly,CareFirst,30.0,Digital Therapeutics,2028-10-02,,CRS-679
 CRS-2000,CareFirst - Medstar Bi-Weekly RAT Extract,Done,Brandon Boshers,Carl Veenendaal,2026-07-03T06:16:45.807-0400,2026-07-16,biweekly,CareFirst,15.0,Digital Engagement,2035-12-14,,CRS-914
-CRS-1999,Paramount - TJ Metzgers Registration/RAT completion YTD,In Progress,Adam Ibrahim,Amber Goodwin,2026-07-02T13:09:31.184-0400,2026-07-15,one-time,,120.0,Digital Engagement,,Rush,
+CRS-1999,Paramount - TJ Metzgers Registration/RAT completion YTD,Done,Adam Ibrahim,Amber Goodwin,2026-07-02T13:09:31.184-0400,2026-07-30,one-time,,120.0,Digital Engagement,,Rush,
 CRS-1998,LAPRA: Platform engagement by gender and age,Done,Brandon Boshers,Andrea Chait,2026-07-02T11:47:49.884-0400,2026-07-29,one-time,LAPRA,150.0,Digital Engagement,,,
 CRS-1996,Gwinnet Co- Client is seeking information by TPA (Aetna and Kaiser Permanente),Stakeholder Review,Scott Mann,Ginger Maloy,2026-07-01T18:02:53.050-0400,,one-time,Client Not Listed,,Custom,,"business-form, business-form-97",
 CRS-1995,Health Net CA - Bonus Rewards Update,In Progress,Brandon Boshers,Andrew Taylor,2026-07-01T17:30:15.221-0400,,one-time,HealthNet - CA,,Health Insights,,"business-form, business-form-97",
