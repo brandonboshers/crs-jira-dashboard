@@ -1,4 +1,8 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2278,Challenge Enrollments for Current Month Challenge,Backlog,Brandon Boshers,Brandon Boshers,2026-08-20T09:07:04.680-0400,,monthly,AEP,30.0,Challenges,2040-07-31,,CRS-70
+CRS-2277,CareFirst WDM Ops Dashboard,Backlog,Dave Schardt,Dave Schardt,2026-08-20T09:06:55.205-0400,,monthly,CareFirst,20.0,Digital Engagement,2036-07-15,,CRS-88
+CRS-2276,Karsten - Non Enrollee Members Missing from Report ,Backlog,Scott Mann,Brooke Lesser,2026-08-19T17:31:13.624-0400,,one-time,BCBSAZ,,Rewards and Incentives,,Rush,
+CRS-2275,CareFirst Biometrics Billing Table Consolidation Project,Backlog,Scott Mann,Dave Schardt,2026-08-19T11:32:00.267-0400,,one-time,CareFirst,,Billing,,"business-form, business-form-97",
 CRS-2274,Lennar Biweekly GLP1 Marketing Email - Temp Custom Process,Backlog,Brandon Boshers,Marynda Eich,2026-08-19T09:02:14.990-0400,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-137
 CRS-2273,"Monthly Summary Reports - UC, CalPers, SFHSS",Backlog,Brandon Boshers,Andrew Taylor,2026-08-19T09:01:59.109-0400,,monthly,HealthNet - CA,120.0,Coaching,2040-07-31,,CRS-154
 CRS-2272,AutoZone 2026 Monthly Reward Report,Backlog,Brandon Boshers,Christy Wilson,2026-08-19T09:00:57.948-0400,,monthly,AutoZone,45.0,Rewards and Incentives,2032-05-01,,CRS-1654
@@ -152,7 +156,7 @@ CRS-2119,AZ Automated RAT report didn't deliver on Friday,Done,Adam Ibrahim,Broo
 CRS-2118,AFLAC- Please use the list linked within the Description and see if any members were previously sent over with a blood draw in 2026,Done,Brandon Boshers,Neely Niemann,2026-07-20T13:38:34.460-0400,2026-07-27,one-time,AFLAC,120.0,Rewards and Incentives,,Rush,
 CRS-2117,LAFRA: list of members who earned & redeemed,Done,Brandon Boshers,Andrea Chait,2026-07-17T18:06:04.425-0400,2026-07-29,one-time,LAFRA,120.0,Digital Engagement,,"business-form, business-form-97",
 CRS-2116,CareFirst - July 2026 Nestle Destination Challenge REMINDER Email Extracts,Done,Adam Ibrahim,Brook Baldwin,2026-07-17T11:26:35.829-0400,2026-07-22,one-time,CareFirst,5.0,Marketing,,Rush,
-CRS-2115,Challenge Enrollments for Current Month Challenge,Backlog,Brandon Boshers,Brandon Boshers,2026-07-17T09:01:03.478-0400,,monthly,AEP,30.0,Challenges,2040-07-31,,CRS-70
+CRS-2115,Challenge Enrollments for Current Month Challenge,Done,Brandon Boshers,Brandon Boshers,2026-07-17T09:01:03.478-0400,2026-08-19,monthly,AEP,30.0,Challenges,2040-07-31,,CRS-70
 CRS-2114,CareFirst - Quarterly Digital/Attempt PG's,Backlog,Dave Schardt,Dave Schardt,2026-07-17T09:00:47.540-0400,,quarterly,CareFirst,45.0,Digital Engagement,2040-07-16,,CRS-131
 CRS-2113,Run Quarterly ERN,Backlog,Brandon Boshers,Scott Mann,2026-07-17T09:00:40.041-0400,,quarterly,CareFirst,120.0,Digital Therapeutics,2040-07-31,,CRS-147
 CRS-2112,Quarterly ERN Report,Backlog,Brandon Boshers,Andrew Taylor,2026-07-17T09:00:36.583-0400,,quarterly,HealthNet - CA,120.0,Coaching,2040-07-31,,CRS-155
@@ -177,7 +181,7 @@ CRS-2088,CareFirst- State of Maryland DM Utilization + SLEOLA Quarterly Member l
 CRS-2087,CareFirst BCPS and MTA PAR reporting,Done,Dave Schardt,Dave Schardt,2026-07-15T09:20:34.824-0400,2026-07-16,quarterly,CareFirst,10.0,Coaching,2030-07-15,,CRS-2086
 CRS-2082,Monthly Lifestyle Coaching Report,Done,Brandon Boshers,Brooke Lesser,2026-07-14T09:01:12.004-0400,2026-08-13,monthly,BCBSAZ,45.0,Coaching,2040-07-31,,CRS-67
 CRS-2081,CareFirst New Registered Users Reporting,Done,Dave Schardt,Dave Schardt,2026-07-14T09:01:03.621-0400,2026-08-17,monthly,CareFirst,15.0,Digital Engagement,2036-07-15,,CRS-87
-CRS-2080,CareFirst WDM Ops Dashboard,On Hold,Dave Schardt,Dave Schardt,2026-07-14T09:01:01.377-0400,,monthly,CareFirst,20.0,Digital Engagement,2036-07-15,,CRS-88
+CRS-2080,CareFirst WDM Ops Dashboard,Done,Dave Schardt,Dave Schardt,2026-07-14T09:01:01.377-0400,2026-08-19,monthly,CareFirst,180.0,Digital Engagement,2036-07-15,,CRS-88
 CRS-2079,CareFirst State of Maryland Survey Response File,Backlog,Dave Schardt,Dave Schardt,2026-07-14T09:00:57.675-0400,,quarterly,CareFirst,60.0,Digital Engagement,2036-07-15,,CRS-91
 CRS-2078,CareFirst Billing - CFA Send,Done,Dave Schardt,Dave Schardt,2026-07-14T09:00:55.591-0400,2026-08-11,monthly,CareFirst,15.0,Billing,2039-07-11,,CRS-92
 CRS-2077,Monthly Challenge Report for Previous Month Challenges,Done,Brandon Boshers,Brooke Lesser,2026-07-14T09:00:53.039-0400,2026-08-13,monthly,BCBSAZ,30.0,Challenges,2040-07-31,,CRS-121
@@ -202,7 +206,7 @@ CRS-2056,CareFirst Weekly Claims,Done,Dave Schardt,Dave Schardt,2026-07-11T18:14
 CRS-2055,Wellstar- 2025 Wellstar Program Report,Done,Brandon Boshers,Andrea Chait,2026-07-11T18:14:10.561-0400,2026-08-12,monthly,Wellstar,30.0,Rewards and Incentives,2040-07-31,,CRS-145
 CRS-2053,BCBS AZ- Sundt strong DPR - Weekly,Done,Brandon Boshers,Brooke Lesser,2026-07-11T06:13:13.585-0400,2026-07-17,weekly,BCBSAZ,15.0,Rewards and Incentives,2027-07-02,,CRS-2024
 CRS-2052,Niagra- Step It Up with Niagara Cares Reporting,Done,Adam Ibrahim,Adam Ibrahim,2026-07-10T18:04:15.922-0400,2026-08-04,one-time,Niagara Bottling Company,60.0,Challenges,,Rush,
-CRS-2051,CareFirst - August 2026 Nestle Challege Secure IDs for In-App Messaging,In Progress,Adam Ibrahim,Brook Baldwin,2026-07-10T17:54:46.381-0400,,one-time,CareFirst,180.0,Marketing,,"business-form, business-form-97",
+CRS-2051,CareFirst - August 2026 Nestle Challege Secure IDs for In-App Messaging,Stakeholder Review,Adam Ibrahim,Brook Baldwin,2026-07-10T17:54:46.381-0400,,one-time,CareFirst,180.0,Marketing,,"business-form, business-form-97",
 CRS-2050,SHBP- Real Age Completion Test,Done,Brandon Boshers,Brandeus Davis,2026-07-10T14:19:32.361-0400,2026-07-13,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-2049,Cencora- BOB Quarterly coaching stats for Mercer (AB's consultant),Backlog,Brandon Boshers,Brandon Boshers,2026-07-10T14:19:28.852-0400,,quarterly,Cencora,30.0,Coaching,2040-07-31,,CRS-73
 CRS-2048,Delta Division by Department Summary,Done,Dave Schardt,Dave Schardt,2026-07-10T14:19:26.990-0400,2026-08-11,monthly,Delta,30.0,Digital Engagement,2030-07-15,,CRS-74
