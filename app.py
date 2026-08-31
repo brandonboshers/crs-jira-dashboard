@@ -60,8 +60,8 @@ if not os.path.exists(TASKS_CSV):
         TASKS_CSV = repo_data
         EPICS_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "crs_jira_export_epics.csv")
     else:
-        TASKS_CSV = f"{GITHUB_RAW_BASE}/projects/jira_dashboard/data/crs_jira_export.csv"
-        EPICS_CSV = f"{GITHUB_RAW_BASE}/projects/jira_dashboard/data/crs_jira_export_epics.csv"
+        TASKS_CSV = f"{GITHUB_RAW_BASE}/projects/CRS/jira_dashboard/data/crs_jira_export.csv"
+        EPICS_CSV = f"{GITHUB_RAW_BASE}/projects/CRS/jira_dashboard/data/crs_jira_export_epics.csv"
         USE_GITHUB = True
 
 
