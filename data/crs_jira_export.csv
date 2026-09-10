@@ -1,4 +1,6 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2359,Allegany County Commissioners Topic Card Detail ,Backlog,Scott Mann,Carl Veenendaal,2026-09-09T13:35:38.436-0400,,one-time,CareFirst,,Digital Engagement,,"business-form, business-form-97",
+CRS-2358,CF Billing-Weekly reporting to show billing discrepancies between Five9 and SCP for billing purposes,Backlog,Scott Mann,Daffney Eddins,2026-09-09T13:33:11.900-0400,,weekly,CareFirst,,Billing,,Rush,
 CRS-2357,SHBP- Real Age Completion Test,Backlog,Brandon Boshers,Brandeus Davis,2026-09-09T09:01:29.423-0400,,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-2356,CareFirst- Smart Dollar and Ovia Billing Report,Backlog,Dave Schardt,Dave Schardt,2026-09-09T09:01:21.795-0400,,monthly,Client Not Listed,60.0,Billing,2036-07-15,,CRS-81
 CRS-2355,CareFirst Billing - CFA Send,Backlog,Dave Schardt,Dave Schardt,2026-09-09T09:01:15.837-0400,,monthly,CareFirst,15.0,Billing,2039-07-11,,CRS-92
@@ -50,7 +52,7 @@ CRS-2310,BCBS AZ- Sundt strong DPR - Weekly,Done,Brandon Boshers,Brooke Lesser,2
 CRS-2309,Lennar Weekly Challenge Report,Done,Brandon Boshers,Marynda Eich,2026-09-02T09:00:10.721-0400,2026-09-08,weekly,Lennar,15.0,Challenges,2026-10-05,,CRS-2257
 CRS-2308,Extra Amedisys Incentive File/Last File,Backlog,Scott Mann,Kristina Viola,2026-09-01T15:08:38.955-0400,,one-time,Amedisys,,Rewards and Incentives,,"business-form, business-form-97",
 CRS-2307,Niagara Monthly- Walmart Redemption Report,Backlog,Brandon Boshers,Luke Staebell,2026-09-01T11:27:44.443-0400,2026-08-13,one-time,Niagara Bottling Company,90.0,Custom,,Rush,
-CRS-2306,Discovery Energy - RehlKo Custom Reporting ,Stakeholder Review,Brandon Boshers,Kristina Viola,2026-08-31T16:56:26.295-0400,,one-time,RehlKo,180.0,Rewards and Incentives,,Rush,
+CRS-2306,Discovery Energy - RehlKo Custom Reporting ,In Progress,Brandon Boshers,Kristina Viola,2026-08-31T16:56:26.295-0400,,one-time,RehlKo,180.0,Rewards and Incentives,,Rush,
 CRS-2305,Custom Weekly Sundt ,Done,Brandon Boshers,Brooke Lesser,2026-08-31T11:24:25.214-0400,2026-09-02,one-time,BCBSAZ,30.0,Rewards and Incentives,,Rush,
 CRS-2304,Kohler - Member Level Choose Well Credit report,Backlog,Brandon Boshers,Marynda Eich,2026-08-31T10:29:19.040-0400,,biweekly,Kohler,,Rewards and Incentives,,"business-form, business-form-97",
 CRS-2303,Wellstar: Points Earned (round 2),Backlog,Brandon Boshers,Andrea Chait,2026-08-29T08:37:27.902-0400,2026-08-28,one-time,Wellstar,240.0,Rewards and Incentives,,Rush,
