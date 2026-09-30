@@ -100,8 +100,13 @@ def load_data():
     )
 
     epics["created"] = pd.to_datetime(epics["created"], errors="coerce", utc=True).dt.tz_localize(None)
+    for dcol in ["recurring_start_date", "recurring_end_date"]:
+        if dcol in epics.columns:
+            epics[dcol] = pd.to_datetime(epics[dcol], errors="coerce", utc=True).dt.tz_localize(None)
     epics["client"] = epics["client"].fillna("Unknown")
     epics["assignee"] = epics["assignee"].fillna("Unassigned")
+    epics["task_type"] = epics["task_type"].fillna("Other") if "task_type" in epics.columns else "Other"
+    epics["frequency"] = epics["frequency"].fillna("one-time") if "frequency" in epics.columns else "one-time"
 
     return tasks, epics
 
@@ -193,7 +198,7 @@ else:
 # ---------------------------------------------------------------------------
 # Tab Layout
 # ---------------------------------------------------------------------------
-tab1, tab2, tab3 = st.tabs(["📋 Team Workload", "🏢 Client Portfolio", "⏱️ Time & Capacity"])
+tab1, tab2, tab3 = st.tabs(["📋 Team Workload", "🏢 Client Portfolio", "🔁 Recurring Operations"])
 
 # ===========================================================================
 # TAB 1: Team Workload Dashboard
