@@ -1007,208 +1007,273 @@ with tab2:
 
 
 # ===========================================================================
-# TAB 3: Time & Capacity (Recurring vs Adhoc)
+# TAB 3: Recurring Operations — the "keep-the-lights-on" engine vs new development
 # ===========================================================================
 with tab3:
-    st.header("Time & Capacity — Recurring vs Adhoc")
+    st.header("Recurring Operations")
+    st.caption("How much of the team's capacity is spent on recurring 'keep-the-lights-on' work, "
+               "when in the month it lands, and how it compares to new-development effort — all scored against goals.")
 
-    # KPI row
-    col1, col2, col3, col4 = st.columns(4)
-    recurring = filtered[filtered["work_type"] == "Recurring"]
-    adhoc = filtered[filtered["work_type"] == "Adhoc"]
-    total_est_mins = filtered["estimated_completion_time"].sum()
-
-    col1.metric("Recurring Tasks", len(recurring))
-    col1.caption("ℹ️ Frequency ≠ one-time (weekly, monthly, etc.)")
-    col2.metric("Adhoc Tasks", len(adhoc))
-    col2.caption("ℹ️ Frequency = one-time")
-    col3.metric("Total Est. Minutes", f"{total_est_mins:,.0f}")
-    col3.caption("ℹ️ Sum of 'Time Spent in Minutes' field")
-    col4.metric("Total Est. Hours", f"{total_est_mins / 60:,.1f}")
-    col4.caption("ℹ️ Total minutes ÷ 60")
-
-    st.divider()
-
-    # Per-member breakdown
-    st.subheader("Estimated Time per Team Member (minutes)")
-    member_time = filtered.groupby(["assignee", "work_type"]).agg(
-        task_count=("key", "count"),
-        total_minutes=("estimated_completion_time", "sum"),
-    ).reset_index()
-
-    fig = px.bar(member_time, x="assignee", y="total_minutes", color="work_type",
-                 barmode="group", height=450, text="total_minutes",
-                 color_discrete_map={"Recurring": "#3498db", "Adhoc": "#e74c3c"})
-    fig.update_traces(texttemplate="%{text:.0f}", textposition="outside")
-    fig.update_layout(xaxis_tickangle=-45, yaxis_title="Minutes")
-    st.plotly_chart(fig, use_container_width=True)
-
-    st.divider()
-
-    # Detailed table per member
-    st.subheader("Member Summary")
-    member_summary = filtered.groupby(["assignee", "work_type"]).agg(
-        tasks=("key", "count"),
-        total_minutes=("estimated_completion_time", "sum"),
-        avg_minutes=("estimated_completion_time", "mean"),
-    ).reset_index()
-    member_summary["total_hours"] = (member_summary["total_minutes"] / 60).round(1)
-    member_summary["avg_minutes"] = member_summary["avg_minutes"].round(1)
-    member_summary = member_summary.sort_values(["assignee", "work_type"])
-
-    st.dataframe(member_summary, use_container_width=True, hide_index=True)
-
-    st.divider()
-
-    # Frequency breakdown
-    col_left, col_right = st.columns(2)
-
-    with col_left:
-        st.subheader("Tasks by Frequency")
-        freq_counts = filtered["frequency"].value_counts().reset_index()
-        freq_counts.columns = ["frequency", "count"]
-        fig = px.bar(freq_counts, x="frequency", y="count", color="frequency", height=350)
-        st.plotly_chart(fig, use_container_width=True)
-
-    with col_right:
-        st.subheader("Est. Minutes by Frequency")
-        freq_time = filtered.groupby("frequency")["estimated_completion_time"].sum().reset_index()
-        freq_time.columns = ["frequency", "total_minutes"]
-        freq_time = freq_time.sort_values("total_minutes", ascending=False)
-        fig = px.bar(freq_time, x="frequency", y="total_minutes", color="frequency", height=350)
-        st.plotly_chart(fig, use_container_width=True)
-
-    st.divider()
-
-    # Weekly capacity view
-    st.subheader("Weekly Recurring Load per Member")
-    st.caption("Estimated minutes per week based on frequency cadence")
-
-    # Convert frequency to weekly multiplier
+    # Frequency → occurrences-per-week (used to annualize recurring load into weekly capacity)
     freq_to_weekly = {
         "daily": 5, "weekly": 1, "biweekly": 0.5,
-        "monthly": 0.25, "quarterly": 0.083,
-        "semiannual": 0.038, "annual": 0.019, "one-time": 0
+        "monthly": 0.25, "quarterly": 0.077,
+        "semiannual": 0.038, "annual": 0.019, "one-time": 0,
     }
-    recurring_load = recurring.copy()
-    recurring_load["weekly_multiplier"] = recurring_load["frequency"].map(freq_to_weekly).fillna(0)
-    recurring_load["weekly_minutes"] = recurring_load["estimated_completion_time"] * recurring_load["weekly_multiplier"]
 
-    weekly_by_member = recurring_load.groupby("assignee")["weekly_minutes"].sum().reset_index()
-    weekly_by_member["weekly_hours"] = (weekly_by_member["weekly_minutes"] / 60).round(1)
-    weekly_by_member = weekly_by_member.sort_values("weekly_hours", ascending=False)
+    recurring = filtered[filtered["work_type"] == "Recurring"].copy()
+    adhoc = filtered[filtered["work_type"] == "Adhoc"].copy()
 
-    fig = px.bar(weekly_by_member, x="assignee", y="weekly_hours", height=400,
-                 text="weekly_hours", color="weekly_hours",
-                 color_continuous_scale="OrRd")
-    fig.update_traces(texttemplate="%{text:.1f}h", textposition="outside")
-    fig.update_layout(xaxis_tickangle=-45, yaxis_title="Hours/Week (Recurring)")
-    fig.add_hline(y=40, line_dash="dash", line_color="red",
-                  annotation_text="40h/week", annotation_position="top right")
-    st.plotly_chart(fig, use_container_width=True)
+    rec_hours = recurring["estimated_completion_time"].sum() / 60
+    adhoc_hours = adhoc["estimated_completion_time"].sum() / 60
+    total_hours_wt = rec_hours + adhoc_hours
+    recurring_hours_pct = (rec_hours / max(total_hours_wt, 0.01)) * 100
 
+    # Steady-state weekly recurring load (occurrence-weighted) and utilization vs capacity
+    recurring["weekly_minutes"] = recurring["estimated_completion_time"] * recurring["frequency"].map(freq_to_weekly).fillna(0)
+    weekly_recurring_hours = recurring["weekly_minutes"].sum() / 60
+    n_producing = len(GOALS["producing_analysts"])
+    team_capacity_hpw = n_producing * GOALS["hours_per_week_per_person"]
+    utilization_pct = (weekly_recurring_hours / max(team_capacity_hpw, 0.01)) * 100
+
+    # -----------------------------------------------------------------------
+    # Goal-aware KPI row
+    # -----------------------------------------------------------------------
+    g1, g2, g3, g4 = st.columns(4)
+    with g1:
+        kpi_vs_goal("Recurring Task Share", len(recurring) / max(len(filtered), 1) * 100,
+                    100 - 0, unit="%", higher_is_better=False, warn=None,
+                    help_text="Share of tasks that are recurring vs one-time. Context metric (no hard goal).")
+        st.caption(f"{len(recurring):,} recurring · {len(adhoc):,} adhoc")
+    with g2:
+        kpi_vs_goal("Recurring % of Hours", recurring_hours_pct, GOALS["recurring_hours_pct_target"],
+                    unit="%", higher_is_better=False, warn=GOALS["recurring_hours_pct_warn"],
+                    help_text="Estimated recurring hours ÷ total estimated hours. Above target means keep-the-lights-on work is crowding out new development.")
+    with g3:
+        kpi_vs_goal("Recurring Utilization", utilization_pct, GOALS["utilization_target_pct"],
+                    unit="%", higher_is_better=False, warn=GOALS["utilization_warn_pct"],
+                    help_text=f"Steady-state recurring load ({weekly_recurring_hours:.0f} h/wk) ÷ team capacity ({team_capacity_hpw:.0f} h/wk from {n_producing} analysts). Over 100% means recurring alone exceeds capacity.")
+    with g4:
+        st.metric("New-Dev Capacity Left", f"{max(team_capacity_hpw - weekly_recurring_hours, 0):.0f} h/wk",
+                  delta=f"of {team_capacity_hpw:.0f} h/wk total",
+                  delta_color="off",
+                  help="Weekly hours left for new development after steady-state recurring work is covered.")
+
+    # Headline narrative
+    badge, _ = status_color(recurring_hours_pct, GOALS["recurring_hours_pct_target"], GOALS["recurring_hours_pct_warn"], higher_is_better=False)
+    st.markdown(
+        f"{badge} **{recurring_hours_pct:.0f}%** of estimated effort is recurring "
+        f"(**{rec_hours:,.0f} h** recurring vs **{adhoc_hours:,.0f} h** new/adhoc). "
+        f"Goal: keep recurring **≤ {GOALS['recurring_hours_pct_target']}%** so the team preserves room for new development."
+    )
 
     st.divider()
 
-    # ---------------------------------------------------------------------------
-    # Trends: Tickets closed per member over time
-    # ---------------------------------------------------------------------------
-    st.subheader("Tickets Closed per Member (Weekly Trend)")
-    closed_with_date = closed_in_range[closed_in_range["closed_date"].notna()].copy()
-    if len(closed_with_date) > 0:
-        closed_with_date["closed_week"] = closed_with_date["closed_date"].dt.to_period("W").dt.start_time
-        weekly_closed = closed_with_date.groupby(["assignee", "closed_week"]).agg(
-            tickets_closed=("key", "count"),
-            total_minutes_closed=("estimated_completion_time", "sum"),
-        ).reset_index()
+    # -----------------------------------------------------------------------
+    # Recurring vs New Development — the effort split (gauges + trend)
+    # -----------------------------------------------------------------------
+    st.subheader("Recurring vs New Development")
+    gauge_l, gauge_r = st.columns(2)
+    with gauge_l:
+        st.plotly_chart(
+            goal_gauge(recurring_hours_pct, GOALS["recurring_hours_pct_target"],
+                       "Recurring % of Hours", warn=GOALS["recurring_hours_pct_warn"],
+                       max_val=100, higher_is_better=False, suffix="%"),
+            use_container_width=True)
+    with gauge_r:
+        st.plotly_chart(
+            goal_gauge(utilization_pct, GOALS["utilization_target_pct"],
+                       "Recurring Utilization of Capacity", warn=GOALS["utilization_warn_pct"],
+                       max_val=max(130, utilization_pct * 1.2), higher_is_better=False, suffix="%"),
+            use_container_width=True)
 
-        fig = px.line(weekly_closed, x="closed_week", y="tickets_closed", color="assignee",
-                      height=400, markers=True)
-        fig.update_layout(xaxis_title="Week", yaxis_title="Tickets Closed")
+    # Trend: recurring % of created-task effort by month (is toil creeping up?)
+    trend = filtered.dropna(subset=["created"]).copy()
+    if len(trend) > 0:
+        trend["month"] = trend["created"].dt.strftime("%Y-%m")
+        mix = trend.groupby(["month", "work_type"])["estimated_completion_time"].sum().unstack(fill_value=0)
+        for col in ["Recurring", "Adhoc"]:
+            if col not in mix.columns:
+                mix[col] = 0
+        mix["rec_pct"] = mix["Recurring"] / (mix["Recurring"] + mix["Adhoc"]).replace(0, pd.NA) * 100
+        mix = mix.reset_index().dropna(subset=["rec_pct"])
+        fig = go.Figure()
+        fig.add_trace(go.Bar(x=mix["month"], y=mix["Recurring"] / 60, name="Recurring hrs", marker_color="#3498db"))
+        fig.add_trace(go.Bar(x=mix["month"], y=mix["Adhoc"] / 60, name="New/Adhoc hrs", marker_color="#e74c3c"))
+        fig.add_trace(go.Scatter(x=mix["month"], y=mix["rec_pct"], name="Recurring %",
+                                 yaxis="y2", mode="lines+markers", line=dict(color="#2c3e50", width=2)))
+        fig.add_hline(y=GOALS["recurring_hours_pct_target"], line_dash="dash", line_color="#2ecc71",
+                      yref="y2", annotation_text=f"Goal {GOALS['recurring_hours_pct_target']}%",
+                      annotation_position="top left")
+        fig.update_layout(barmode="stack", height=420, title="Effort Mix by Month (created)",
+                          yaxis=dict(title="Estimated Hours"),
+                          yaxis2=dict(title="Recurring %", overlaying="y", side="right", range=[0, 100]),
+                          xaxis_tickangle=-45, legend=dict(orientation="h", y=1.12),
+                          margin=dict(t=60))
         st.plotly_chart(fig, use_container_width=True)
+        st.caption("**Insight:** the black line is the share of effort going to recurring work each month. "
+                   "Rising above the green goal line means new development is getting squeezed.")
 
-        st.subheader("Estimated Minutes Completed per Member (Weekly Trend)")
-        fig = px.line(weekly_closed, x="closed_week", y="total_minutes_closed", color="assignee",
-                      height=400, markers=True)
-        fig.update_layout(xaxis_title="Week", yaxis_title="Minutes Completed")
+    st.divider()
+
+    # -----------------------------------------------------------------------
+    # WHEN in the month do recurring tasks land? (beginning / middle / end)
+    # -----------------------------------------------------------------------
+    st.subheader("Recurring Due Timing — When in the Month?")
+    st.caption("Recurring child tasks are auto-created on their due cadence, so a task's created date is its due date. "
+               "This shows the crunch periods to staff around.")
+
+    rec_due = recurring.dropna(subset=["created"]).copy()
+    if len(rec_due) > 0:
+        rec_due["dom"] = rec_due["created"].dt.day
+
+        def month_third(d):
+            if d <= 10:
+                return "Beginning (1–10)"
+            if d <= 20:
+                return "Middle (11–20)"
+            return "End (21–31)"
+
+        rec_due["third"] = rec_due["dom"].apply(month_third)
+        third_order = ["Beginning (1–10)", "Middle (11–20)", "End (21–31)"]
+
+        tl, tr = st.columns([1, 2])
+        with tl:
+            third_counts = rec_due["third"].value_counts().reindex(third_order).fillna(0).reset_index()
+            third_counts.columns = ["Third", "Tasks"]
+            third_hours = rec_due.groupby("third")["estimated_completion_time"].sum().reindex(third_order).fillna(0) / 60
+            third_counts["Hours"] = third_counts["Third"].map(third_hours).round(1)
+            fig = px.bar(third_counts, x="Third", y="Tasks", color="Third",
+                         color_discrete_sequence=["#2ecc71", "#f39c12", "#e74c3c"],
+                         text="Tasks", height=380, title="Recurring Tasks by Part of Month")
+            fig.update_traces(textposition="outside")
+            fig.update_layout(showlegend=False, margin=dict(t=50))
+            st.plotly_chart(fig, use_container_width=True)
+            busiest = third_counts.loc[third_counts["Tasks"].idxmax(), "Third"]
+            st.caption(f"**Peak load: {busiest}** — {int(third_counts['Tasks'].max())} tasks, "
+                       f"{third_counts.loc[third_counts['Tasks'].idxmax(), 'Hours']:.0f} est. hours.")
+        with tr:
+            dom_counts = rec_due.groupby("dom").size().reindex(range(1, 32), fill_value=0).reset_index()
+            dom_counts.columns = ["Day", "Tasks"]
+            fig = px.bar(dom_counts, x="Day", y="Tasks", height=380,
+                         title="Recurring Tasks by Day of Month", color="Tasks",
+                         color_continuous_scale="Blues")
+            fig.update_layout(coloraxis_showscale=False, margin=dict(t=50),
+                              xaxis=dict(dtick=1, tickfont=dict(size=9)))
+            st.plotly_chart(fig, use_container_width=True)
+            st.caption("**Insight:** tall bars = recurring due-date clusters (often the 1st, 15th, and month-end). Plan capacity around them.")
+
+        # Calendar-style heatmap: day-of-month (x) by frequency (y)
+        st.markdown("**Due-date heatmap — day of month by cadence**")
+        heat = rec_due.groupby(["frequency", "dom"]).size().reset_index(name="tasks")
+        freq_row_order = [f for f in ["weekly", "biweekly", "monthly", "quarterly", "semiannual", "annual", "daily"]
+                          if f in heat["frequency"].unique()]
+        heat_pivot = heat.pivot(index="frequency", columns="dom", values="tasks").reindex(
+            index=freq_row_order, columns=range(1, 32)).fillna(0)
+        fig = px.imshow(heat_pivot, aspect="auto", color_continuous_scale="YlOrRd",
+                        labels=dict(x="Day of Month", y="Cadence", color="Tasks"),
+                        height=300)
+        fig.update_layout(margin=dict(t=20), xaxis=dict(dtick=1, tickfont=dict(size=9)))
         st.plotly_chart(fig, use_container_width=True)
     else:
-        st.info("No closed tasks in current filter.")
+        st.info("No recurring tasks in the current filter.")
 
     st.divider()
 
-    # ---------------------------------------------------------------------------
-    # Member Capacity Snapshot
-    # ---------------------------------------------------------------------------
-    st.subheader("Member Capacity Snapshot")
-    st.caption("Current open workload per team member with recurring/adhoc split and estimated time")
+    # -----------------------------------------------------------------------
+    # Recurring workload as epics — the recurring "contracts" the team owns
+    # -----------------------------------------------------------------------
+    st.subheader("Recurring Work Defined as Epics")
+    st.caption("Each recurring epic is a standing commitment (a report/extract the team owns). "
+               "This shows the shape of that recurring book of work.")
 
-    open_filtered = filtered[~filtered["status"].isin(["Done", "Cancelled"])].copy()
+    rec_epics = epics[epics["frequency"].fillna("one-time") != "one-time"].copy()
+    if len(rec_epics) > 0:
+        rec_epics["annual_occurrences"] = rec_epics["frequency"].map(
+            {"daily": 260, "weekly": 52, "biweekly": 26, "monthly": 12,
+             "quarterly": 4, "semiannual": 2, "annual": 1}).fillna(0)
+        rec_epics["est_min"] = rec_epics["estimated_completion_time"].fillna(0)
+        rec_epics["annual_hours"] = (rec_epics["annual_occurrences"] * rec_epics["est_min"] / 60).round(1)
+        rec_epics["weekly_hours"] = (rec_epics["annual_hours"] / 52).round(2)
 
-    if len(open_filtered) > 0:
-        capacity = open_filtered.groupby("assignee").agg(
-            open_tasks=("key", "count"),
-            recurring_open=("work_type", lambda x: (x == "Recurring").sum()),
-            adhoc_open=("work_type", lambda x: (x == "Adhoc").sum()),
-            total_open_minutes=("estimated_completion_time", "sum"),
-        ).reset_index()
-        capacity["total_open_hours"] = (capacity["total_open_minutes"] / 60).round(1)
-        capacity["pct_recurring"] = (capacity["recurring_open"] / capacity["open_tasks"] * 100).round(1)
+        e1, e2, e3, e4 = st.columns(4)
+        e1.metric("Recurring Epics", len(rec_epics), help="Epics with a recurring cadence (the standing book of work).")
+        e2.metric("Annual Recurring Hours", f"{rec_epics['annual_hours'].sum():,.0f} h",
+                  help="Sum of (occurrences/yr × est. time) across all recurring epics.")
+        e3.metric("Implied FTEs", f"{rec_epics['annual_hours'].sum() / (GOALS['hours_per_week_per_person'] * 52):.2f}",
+                  help=f"Annual recurring hours ÷ ({GOALS['hours_per_week_per_person']} h/wk × 52 wk). How many full-time people the recurring book consumes.")
+        e4.metric("Distinct Clients", rec_epics["client"].nunique())
 
-        # Add weekly recurring load
-        recurring_open = open_filtered[open_filtered["work_type"] == "Recurring"].copy()
-        recurring_open["weekly_multiplier"] = recurring_open["frequency"].map(freq_to_weekly).fillna(0)
-        recurring_open["weekly_minutes"] = recurring_open["estimated_completion_time"] * recurring_open["weekly_multiplier"]
-        weekly_load = recurring_open.groupby("assignee")["weekly_minutes"].sum().reset_index()
-        weekly_load["recurring_hours_per_week"] = (weekly_load["weekly_minutes"] / 60).round(1)
+        ce_l, ce_r = st.columns(2)
+        with ce_l:
+            by_freq = rec_epics.groupby("frequency").agg(
+                epics=("key", "count"), annual_hours=("annual_hours", "sum")).reset_index()
+            by_freq = by_freq.sort_values("annual_hours", ascending=False)
+            fig = px.bar(by_freq, x="frequency", y="annual_hours", color="frequency",
+                         text="epics", height=380, title="Annual Recurring Hours by Cadence")
+            fig.update_traces(texttemplate="%{text} epics", textposition="outside")
+            fig.update_layout(showlegend=False, yaxis_title="Annual Hours", margin=dict(t=50))
+            st.plotly_chart(fig, use_container_width=True)
+        with ce_r:
+            by_type = rec_epics.groupby("task_type").agg(annual_hours=("annual_hours", "sum")).reset_index()
+            by_type = by_type[by_type["annual_hours"] > 0].sort_values("annual_hours", ascending=False)
+            fig = px.pie(by_type, names="task_type", values="annual_hours", hole=0.45,
+                         height=380, title="Annual Recurring Hours by Work Category")
+            fig.update_traces(textinfo="label+percent")
+            fig.update_layout(margin=dict(t=50))
+            st.plotly_chart(fig, use_container_width=True)
 
-        capacity = capacity.merge(weekly_load[["assignee", "recurring_hours_per_week"]], on="assignee", how="left")
-        capacity["recurring_hours_per_week"] = capacity["recurring_hours_per_week"].fillna(0)
-        capacity = capacity.sort_values("total_open_hours", ascending=False)
-
-        # Display table
+        st.markdown("**Heaviest recurring commitments (by annual hours)**")
+        top_epics = rec_epics.sort_values("annual_hours", ascending=False).head(20)[
+            ["key", "summary", "client", "frequency", "est_min", "annual_occurrences", "annual_hours", "weekly_hours", "assignee"]
+        ].rename(columns={
+            "key": "Epic", "summary": "Summary", "client": "Client", "frequency": "Cadence",
+            "est_min": "Min/Run", "annual_occurrences": "Runs/Yr", "annual_hours": "Hours/Yr",
+            "weekly_hours": "Hours/Wk", "assignee": "Owner",
+        })
+        JIRA_BASE = "https://arnoldmedia.jira.com/browse/"
+        top_epics["Epic"] = top_epics["Epic"].apply(lambda x: f"{JIRA_BASE}{x}")
         st.dataframe(
-            capacity[["assignee", "open_tasks", "recurring_open", "adhoc_open",
-                      "total_open_hours", "recurring_hours_per_week", "pct_recurring"]].rename(columns={
-                "assignee": "Team Member",
-                "open_tasks": "Open Tasks",
-                "recurring_open": "Recurring",
-                "adhoc_open": "Adhoc",
-                "total_open_hours": "Total Open (hrs)",
-                "recurring_hours_per_week": "Recurring hrs/wk",
-                "pct_recurring": "% Recurring",
-            }),
-            use_container_width=True, hide_index=True
+            top_epics, use_container_width=True, hide_index=True,
+            column_config={
+                "Epic": st.column_config.LinkColumn("Epic", display_text=r"(CRS-\d+)"),
+                "Hours/Yr": st.column_config.NumberColumn("Hours/Yr", format="%.1f h"),
+                "Hours/Wk": st.column_config.NumberColumn("Hours/Wk", format="%.2f h"),
+            },
         )
-
-        st.divider()
-
-        # Capacity bar chart
-        st.subheader("Open Workload by Member")
-        cap_melted = capacity.melt(
-            id_vars=["assignee"],
-            value_vars=["recurring_open", "adhoc_open"],
-            var_name="type", value_name="count"
-        )
-        cap_melted["type"] = cap_melted["type"].map({"recurring_open": "Recurring", "adhoc_open": "Adhoc"})
-
-        fig = px.bar(cap_melted, x="assignee", y="count", color="type",
-                     barmode="stack", height=400,
-                     color_discrete_map={"Recurring": "#3498db", "Adhoc": "#e74c3c"})
-        fig.update_layout(xaxis_tickangle=-45, yaxis_title="Open Tasks")
-        st.plotly_chart(fig, use_container_width=True)
-
-        # Hours bubble chart
-        st.subheader("Capacity Overview (Bubble = Total Open Hours)")
-        fig = px.scatter(capacity, x="recurring_hours_per_week", y="adhoc_open",
-                         size="total_open_hours", color="assignee",
-                         hover_name="assignee", height=450,
-                         labels={
-                             "recurring_hours_per_week": "Recurring Hours/Week",
-                             "adhoc_open": "Adhoc Open Tasks",
-                             "total_open_hours": "Total Open Hours"
-                         })
-        fig.update_layout(showlegend=False)
-        st.plotly_chart(fig, use_container_width=True)
     else:
-        st.info("No open tasks in current filter.")
+        st.info("No recurring epics found in the epics export.")
+
+    st.divider()
+
+    # -----------------------------------------------------------------------
+    # Per-member recurring load vs capacity (goal line)
+    # -----------------------------------------------------------------------
+    st.subheader("Recurring Load per Member vs Capacity")
+    st.caption(f"Steady-state recurring hours/week per analyst. Goal: recurring stays under "
+               f"{GOALS['recurring_hours_pct_target']}% of a {GOALS['hours_per_week_per_person']}h week "
+               f"(~{GOALS['hours_per_week_per_person'] * GOALS['recurring_hours_pct_target'] / 100:.0f}h) to leave room for new dev.")
+
+    if len(recurring) > 0:
+        member_load = recurring.groupby("assignee")["weekly_minutes"].sum().reset_index()
+        member_load["weekly_hours"] = (member_load["weekly_minutes"] / 60).round(1)
+        member_load = member_load.sort_values("weekly_hours", ascending=False)
+        rec_target_h = GOALS["hours_per_week_per_person"] * GOALS["recurring_hours_pct_target"] / 100
+
+        fig = px.bar(member_load, x="assignee", y="weekly_hours", height=400,
+                     text="weekly_hours", color="weekly_hours", color_continuous_scale="OrRd")
+        fig.update_traces(texttemplate="%{text:.1f}h", textposition="outside")
+        fig.add_hline(y=rec_target_h, line_dash="dash", line_color="#2ecc71",
+                      annotation_text=f"Recurring goal ≤ {rec_target_h:.0f}h/wk", annotation_position="top right")
+        fig.add_hline(y=GOALS["hours_per_week_per_person"], line_dash="dot", line_color="#e74c3c",
+                      annotation_text=f"{GOALS['hours_per_week_per_person']}h/wk full capacity", annotation_position="bottom right")
+        fig.update_layout(coloraxis_showscale=False, xaxis_tickangle=-45, yaxis_title="Recurring Hours/Week")
+        st.plotly_chart(fig, use_container_width=True)
+
+        over = member_load[member_load["weekly_hours"] > rec_target_h]
+        if len(over) > 0:
+            st.warning("**Over recurring goal:** " +
+                       ", ".join(f"{r.assignee} ({r.weekly_hours:.1f}h/wk)" for r in over.itertuples()) +
+                       " — little room left for new development.")
+    else:
+        st.info("No recurring tasks in the current filter.")
