@@ -1,4 +1,5 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2582,CareFirst Weekly Claims,Backlog,Dave Schardt,Dave Schardt,2026-10-17T17:05:28.984-0400,,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
 CRS-2581,Next Era- Wellness Summary - BiWeekly Custom Extract,Backlog,Brandon Boshers,Neely Niemann,2026-10-16T13:08:17.583-0400,,biweekly,NextEra,30.0,Rewards and Incentives,2040-07-31,,CRS-126
 CRS-2580,Kohler- Monthly Medical Plan File Member Level File,Backlog,Brandon Boshers,Marynda Eich,2026-10-16T13:08:15.309-0400,,monthly,Kohler,45.0,Rewards and Incentives,2040-07-31,,CRS-127
 CRS-2579,CareFirst - Quarterly Digital/Attempt PG's,Backlog,Dave Schardt,Dave Schardt,2026-10-16T13:08:11.869-0400,,quarterly,CareFirst,45.0,Digital Engagement,2040-07-16,,CRS-131
@@ -50,7 +51,7 @@ CRS-2533,Delta Division by Department Summary,Backlog,Dave Schardt,Dave Schardt,
 CRS-2532,Delta Air DHR and DWR Rewards Report,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:14:07.096-0400,,monthly,Delta,30.0,Rewards and Incentives,2030-07-15,,CRS-75
 CRS-2531,Delta Air DHR and DWR Activity Report,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:14:05.185-0400,,monthly,Delta,20.0,Digital Engagement,2030-07-15,,CRS-76
 CRS-2530,Delta DWR Redemptions Reporting,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:14:03.316-0400,,monthly,Delta,30.0,Digital Engagement,2030-07-15,,CRS-77
-CRS-2529,CareFirst Weekly Claims,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:14:00.186-0400,,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
+CRS-2529,CareFirst Weekly Claims,Done,Dave Schardt,Dave Schardt,2026-10-08T09:14:00.186-0400,2026-10-16,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
 CRS-2528,Kohler- Monthly Medical Plan File,Backlog,Brandon Boshers,Marynda Eich,2026-10-08T09:13:54.561-0400,,monthly,Kohler,30.0,Rewards and Incentives,2040-07-31,,CRS-122
 CRS-2527,Kohler- Monthly Reporting By Cohort table,Backlog,Brandon Boshers,Marynda Eich,2026-10-08T09:13:52.569-0400,,monthly,Kohler,45.0,Digital Engagement,2040-07-31,,CRS-123
 CRS-2526,Delta - No Rewards MAU,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:13:48.686-0400,,monthly,Delta,30.0,Digital Engagement,2040-07-16,,CRS-129
@@ -130,7 +131,7 @@ CRS-2453,CareFirst- Weekly Tiered Incentive Aggregate Report CareFirst - Navy Fe
 CRS-2452,CareFirst - Medstar Bi-Weekly RAT Extract,Done,Brandon Boshers,Carl Veenendaal,2026-09-25T09:00:15.400-0400,2026-10-09,biweekly,CareFirst,15.0,Digital Engagement,2035-12-14,,CRS-914
 CRS-2451,Fresenius Medical Care - Need =GUIDS ,Done,Adam Ibrahim,Christy Wilson,2026-09-24T18:58:36.444-0400,2026-09-29,quarterly,Fitness Clients,120.0,Rewards and Incentives,,Rush,
 CRS-2450,2026  Rehlko Medical Plan File Member Level File - Oct Off cycle,Done,Brandon Boshers,Kristina Viola,2026-09-24T12:30:41.581-0400,2026-10-02,one-time,RehlKo,45.0,Rewards and Incentives,2040-07-31,,
-CRS-2449,CareFirst WDM billing - August Engagement Calls,On Hold,Dave Schardt,Dave Schardt,2026-09-24T11:43:25.382-0400,,one-time,CareFirst,,Billing,,Rush,
+CRS-2449,CareFirst WDM billing - August Engagement Calls,In Progress,Dave Schardt,Dave Schardt,2026-09-24T11:43:25.382-0400,,one-time,CareFirst,,Billing,,Rush,
 CRS-2448,CareFirst PG Minor Logic Updates,Done,Dave Schardt,Dave Schardt,2026-09-24T11:07:17.081-0400,2026-09-24,one-time,,120.0,PG,,Rush,
 CRS-2447,Lennar Biweekly GLP1 Marketing Email - Temp Custom Process,Backlog,Brandon Boshers,Marynda Eich,2026-09-24T09:00:47.786-0400,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-137
 CRS-2446,BCI Refire Error 5.1.26 - Update and Evaluate Loss,Backlog,Brandon Boshers,Andrew Taylor,2026-09-24T09:00:16.642-0400,,monthly,BCI,360.0,Rewards and Incentives,2027-01-14,,CRS-1744
