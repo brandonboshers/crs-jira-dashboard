@@ -1,4 +1,6 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2648,CareFirst Monthly PG's (RealAge and Coaching),Backlog,Dave Schardt,Dave Schardt,2026-10-31T09:00:45.650-0400,,monthly,CareFirst,60.0,Digital Engagement,2036-07-15,,CRS-90
+CRS-2647,CareFirst Weekly Claims,Backlog,Dave Schardt,Dave Schardt,2026-10-30T17:50:16.155-0400,,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
 CRS-2646,CareFirst Ovia Incentive Tracking File,Backlog,Dave Schardt,Dave Schardt,2026-10-30T17:50:12.626-0400,,monthly,CareFirst,30.0,Digital Engagement,2036-07-15,,CRS-89
 CRS-2645,Next Era- Wellness Summary - BiWeekly Custom Extract,Backlog,Brandon Boshers,Neely Niemann,2026-10-30T17:50:07.432-0400,,biweekly,NextEra,30.0,Rewards and Incentives,2040-07-31,,CRS-126
 CRS-2644,CareFirst - ADR Redemption Report Biweekly Ftp Drop,Backlog,Adam Ibrahim,Adam Ibrahim,2026-10-30T09:11:28.268-0400,,biweekly,,,Rewards and Incentives,2039-02-24,,CRS-1324
@@ -164,7 +166,7 @@ CRS-2482,CareFirst- Quarterly Paper RAT Invoicing,Backlog,Brandon Boshers,Scott 
 CRS-2481,Next Era- Wellness Summary - BiWeekly Custom Extract,Done,Brandon Boshers,Neely Niemann,2026-10-02T09:00:42.643-0400,2026-10-15,biweekly,NextEra,30.0,Rewards and Incentives,2040-07-31,,CRS-126
 CRS-2480,Paramount Detail Points Report - Member Level,On Hold,Dave Schardt,Dave Schardt,2026-10-01T09:01:07.014-0400,,monthly,Paramount / Pro Medica,30.0,Rewards and Incentives,2030-07-15,,CRS-78
 CRS-2479,CareFirst Ovia Incentive Tracking File,Done,Dave Schardt,Dave Schardt,2026-10-01T09:01:01.565-0400,2026-10-30,monthly,CareFirst,30.0,Digital Engagement,2036-07-15,,CRS-89
-CRS-2478,CareFirst Monthly PG's (RealAge and Coaching),In Progress,Dave Schardt,Dave Schardt,2026-10-01T09:00:58.704-0400,,monthly,CareFirst,60.0,Digital Engagement,2036-07-15,,CRS-90
+CRS-2478,CareFirst Monthly PG's (RealAge and Coaching),Done,Dave Schardt,Dave Schardt,2026-10-01T09:00:58.704-0400,2026-10-30,monthly,CareFirst,180.0,Digital Engagement,2036-07-15,,CRS-90
 CRS-2477,CareFirst Billing - Biometrics,In Progress,Dave Schardt,Dave Schardt,2026-10-01T09:00:29.681-0400,,monthly,CareFirst,,Billing,2040-08-01,,CRS-363
 CRS-2476,BCI Incentive Error Support - Quarterly,Backlog,Brandon Boshers,Andrew Taylor,2026-10-01T09:00:18.360-0400,,quarterly,BCI,120.0,Rewards and Incentives,2027-01-31,,CRS-1511
 CRS-2475,CareFirst - Care Management October Acquisition Email,Done,Adam Ibrahim,Brook Baldwin,2026-09-30T17:18:47.174-0400,2026-10-23,one-time,CareFirst,45.0,Marketing,,"business-form, business-form-97",
