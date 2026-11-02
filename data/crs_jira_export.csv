@@ -1,4 +1,7 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2651,BCBS AZ- Run Weekly RAT and REG History Report,Backlog,Brandon Boshers,Brooke Lesser,2026-11-02T09:00:36.971-0500,,weekly,BCBSAZ,15.0,Onboarding,2040-07-31,,CRS-151
+CRS-2650,Carelinx's Identification File Using ADT File from Cigna,Backlog,Brandon Boshers,Brandon Boshers,2026-11-02T09:00:20.251-0500,,weekly,Lennar,15.0,Custom,2030-12-05,,CRS-963
+CRS-2649,BCBS AZ- Sundt strong DPR - Weekly,Backlog,Brandon Boshers,Brooke Lesser,2026-11-02T09:00:11.467-0500,,weekly,BCBSAZ,15.0,Rewards and Incentives,2027-07-02,,CRS-2024
 CRS-2648,CareFirst Monthly PG's (RealAge and Coaching),Backlog,Dave Schardt,Dave Schardt,2026-10-31T09:00:45.650-0400,,monthly,CareFirst,60.0,Digital Engagement,2036-07-15,,CRS-90
 CRS-2647,CareFirst Weekly Claims,Backlog,Dave Schardt,Dave Schardt,2026-10-30T17:50:16.155-0400,,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
 CRS-2646,CareFirst Ovia Incentive Tracking File,Backlog,Dave Schardt,Dave Schardt,2026-10-30T17:50:12.626-0400,,monthly,CareFirst,30.0,Digital Engagement,2036-07-15,,CRS-89
@@ -10,7 +13,7 @@ CRS-2641,Trelleborg - 2026 Medical Plan Rewards Program,Backlog,Adam Ibrahim,Mar
 CRS-2639,CareFirst - PG's quarterly metric feeder (Jon auto runs on the 12th),Backlog,Adam Ibrahim,Adam Ibrahim,2026-10-28T09:30:32.293-0400,,quarterly,CareFirst,45.0,PG,2040-08-30,,CRS-223
 CRS-2638,Monthly Weight Extract,Backlog,Brandon Boshers,Marynda Eich,2026-10-27T11:28:51.244-0400,,monthly,Lennar,180.0,Health Insights,,"business-form, business-form-97",
 CRS-2637,Weekly Coaching Progress,Backlog,Brandon Boshers,Craig Petty,2026-10-27T09:24:35.612-0400,,weekly,SHBP,160.0,Coaching,2040-07-31,,CRS-150
-CRS-2636,Carelinx's Identification File Using ADT File from Cigna,Backlog,Brandon Boshers,Brandon Boshers,2026-10-27T09:24:08.728-0400,,weekly,Lennar,15.0,Custom,2030-12-05,,CRS-963
+CRS-2636,Carelinx's Identification File Using ADT File from Cigna,Done,Brandon Boshers,Brandon Boshers,2026-10-27T09:24:08.728-0400,2026-11-02,weekly,Lennar,15.0,Custom,2030-12-05,,CRS-963
 CRS-2635,CareFirst WDM Weekly Billing Counts,Backlog,Dave Schardt,Dave Schardt,2026-10-27T09:24:05.036-0400,,weekly,CareFirst,30.0,Coaching,2026-12-28,,CRS-1443
 CRS-2634,BCI Refire Error 5.1.26 - Update and Evaluate Loss,Backlog,Brandon Boshers,Andrew Taylor,2026-10-27T09:24:00.336-0400,,monthly,BCI,360.0,Rewards and Incentives,2027-01-14,,CRS-1744
 CRS-2633,Loews Weekly Custom Report,Backlog,Brandon Boshers,Luke Staebell,2026-10-27T09:23:58.326-0400,,weekly,Loews Hotels,300.0,Rewards and Incentives,2027-01-05,,CRS-1827
@@ -25,11 +28,11 @@ CRS-2625,Kohler - 2026 Marketing List for Medical Plan Program,Done,Brandon Bosh
 CRS-2624,SHBP- Real Age Completion Test,Backlog,Brandon Boshers,Brandeus Davis,2026-10-24T23:17:57.099-0400,,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-2623,CareFirst Weekly Claims,Done,Dave Schardt,Dave Schardt,2026-10-24T21:15:40.549-0400,2026-10-30,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
 CRS-2622,Lennar Biweekly GLP1 Marketing Email - Temp Custom Process,Backlog,Brandon Boshers,Marynda Eich,2026-10-24T20:14:41.357-0400,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-137
-CRS-2621,BCBS AZ- Run Weekly RAT and REG History Report,Backlog,Brandon Boshers,Brooke Lesser,2026-10-24T19:51:46.399-0400,,weekly,BCBSAZ,15.0,Onboarding,2040-07-31,,CRS-151
+CRS-2621,BCBS AZ- Run Weekly RAT and REG History Report,Done,Brandon Boshers,Brooke Lesser,2026-10-24T19:51:46.399-0400,2026-11-02,weekly,BCBSAZ,15.0,Onboarding,2040-07-31,,CRS-151
 CRS-2620,CareFirst - Medstar Bi-Weekly RAT Extract,Backlog,Brandon Boshers,Carl Veenendaal,2026-10-24T15:56:51.945-0400,,biweekly,CareFirst,15.0,Digital Engagement,2035-12-14,,CRS-914
 CRS-2619,CareFirst - IDS Mailing Campaign for Care Management,Backlog,Adam Ibrahim,Brook Baldwin,2026-10-24T12:06:39.262-0400,,monthly,CareFirst,,Care Management,2042-01-14,,CRS-1155
 CRS-2618,CareFirst - IDS Mailing Campaign for Care Management,Backlog,Adam Ibrahim,Brook Baldwin,2026-10-24T09:03:41.216-0400,,monthly,CareFirst,,Care Management,2042-01-14,,CRS-1155
-CRS-2617,BCBS AZ- Sundt strong DPR - Weekly,Backlog,Brandon Boshers,Brooke Lesser,2026-10-24T09:03:35.095-0400,,weekly,BCBSAZ,15.0,Rewards and Incentives,2027-07-02,,CRS-2024
+CRS-2617,BCBS AZ- Sundt strong DPR - Weekly,Done,Brandon Boshers,Brooke Lesser,2026-10-24T09:03:35.095-0400,2026-11-02,weekly,BCBSAZ,15.0,Rewards and Incentives,2027-07-02,,CRS-2024
 CRS-2616,LAFRA: utilization by Wellhub gym,Backlog,Brandon Boshers,Andrea Chait,2026-10-23T14:31:15.071-0400,,one-time,LAFRA,,Fitness,,"business-form, business-form-97",
 CRS-2615,"CareFirst Billing - Admin. Services, CTQ, SD and CFA",Backlog,Dave Schardt,Dave Schardt,2026-10-22T09:00:51.247-0400,,monthly,CareFirst,180.0,Billing,2036-07-15,,CRS-86
 CRS-2614,CF Coaching Outreach Frequency Attempts,In Progress,Dave Schardt,Dave Schardt,2026-10-22T09:00:10.649-0400,,quarterly,,,PG,2031-11-10,,CRS-2609
