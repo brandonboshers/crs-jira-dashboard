@@ -1,4 +1,16 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2669,CareFirst- Smart Dollar and Ovia Billing Report,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:01:21.956-0500,,monthly,Client Not Listed,60.0,Billing,2036-07-15,,CRS-81
+CRS-2668,CareFirst Billing - Ovia,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:01:19.375-0500,,monthly,CareFirst,60.0,Billing,2036-07-15,,CRS-84
+CRS-2667,Koch Monthly Steps for Health Report,Backlog,Brandon Boshers,Molly Whalen,2026-11-04T09:01:05.360-0500,,monthly,Koch,45.0,Rewards and Incentives,2040-07-31,,CRS-134
+CRS-2666,Lennar Biweekly GLP1 Marketing Email - Temp Custom Process,Backlog,Brandon Boshers,Marynda Eich,2026-11-04T09:01:03.428-0500,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-136
+CRS-2665,CareFirst Billing - Omada,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:00:52.663-0500,,monthly,CareFirst,60.0,Billing,2040-08-13,,CRS-219
+CRS-2664,CareFirst WDM Billing,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:00:47.420-0500,,monthly,CareFirst,60.0,Billing,2040-08-27,,CRS-274
+CRS-2663,Cencora (Amerisource Bergen prior) Challenge (Location) Report,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:00:39.555-0500,,monthly,Cencora,30.0,Challenges,2037-08-14,,CRS-362
+CRS-2662,CareFirst - Monthly Omada file transfer,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:00:34.910-0500,,monthly,CareFirst,30.0,Digital Therapeutics,2028-10-02,,CRS-679
+CRS-2661,CareFirst WDM Weekly Billing Counts,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:00:21.084-0500,,weekly,CareFirst,30.0,Coaching,2026-12-28,,CRS-1443
+CRS-2660,CareFirst PG Weekly Update,Backlog,Dave Schardt,Dave Schardt,2026-11-04T09:00:12.732-0500,,weekly,CareFirst,30.0,PG,2027-04-19,,CRS-2571
+CRS-2659,Parsons,Backlog,Dave Schardt,Dave Schardt,2026-11-03T16:42:21.590-0500,,one-time,,,Custom,,Rush,
+CRS-2658,Niagara Monthly- Walmart Redemption Report,Backlog,Brandon Boshers,Luke Staebell,2026-11-03T09:33:09.593-0500,,one-time,Niagara Bottling Company,90.0,Custom,,Rush,
 CRS-2657,SHBP- Real Age Completion Test,Backlog,Brandon Boshers,Brandeus Davis,2026-11-03T09:01:00.790-0500,,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-2656,SHBP- Monthly Billing Deliverables,Backlog,Brandon Boshers,Brandon Boshers,2026-11-03T09:00:50.544-0500,,monthly,SHBP,780.0,Billing,2040-07-31,,CRS-120
 CRS-2655,Weekly Coaching Progress,Backlog,Brandon Boshers,Craig Petty,2026-11-03T09:00:39.817-0500,,weekly,SHBP,160.0,Coaching,2040-07-31,,CRS-150
@@ -20,10 +32,10 @@ CRS-2639,CareFirst - PG's quarterly metric feeder (Jon auto runs on the 12th),Ba
 CRS-2638,Monthly Weight Extract,Backlog,Brandon Boshers,Marynda Eich,2026-10-27T11:28:51.244-0400,,monthly,Lennar,180.0,Health Insights,,"business-form, business-form-97",
 CRS-2637,Weekly Coaching Progress,Done,Brandon Boshers,Craig Petty,2026-10-27T09:24:35.612-0400,2026-11-02,weekly,SHBP,160.0,Coaching,2040-07-31,,CRS-150
 CRS-2636,Carelinx's Identification File Using ADT File from Cigna,Done,Brandon Boshers,Brandon Boshers,2026-10-27T09:24:08.728-0400,2026-11-02,weekly,Lennar,15.0,Custom,2030-12-05,,CRS-963
-CRS-2635,CareFirst WDM Weekly Billing Counts,Backlog,Dave Schardt,Dave Schardt,2026-10-27T09:24:05.036-0400,,weekly,CareFirst,30.0,Coaching,2026-12-28,,CRS-1443
+CRS-2635,CareFirst WDM Weekly Billing Counts,Done,Dave Schardt,Dave Schardt,2026-10-27T09:24:05.036-0400,2026-11-03,weekly,CareFirst,30.0,Coaching,2026-12-28,,CRS-1443
 CRS-2634,BCI Refire Error 5.1.26 - Update and Evaluate Loss,Backlog,Brandon Boshers,Andrew Taylor,2026-10-27T09:24:00.336-0400,,monthly,BCI,360.0,Rewards and Incentives,2027-01-14,,CRS-1744
 CRS-2633,Loews Weekly Custom Report,Done,Brandon Boshers,Luke Staebell,2026-10-27T09:23:58.326-0400,2026-11-02,weekly,Loews Hotels,300.0,Rewards and Incentives,2027-01-05,,CRS-1827
-CRS-2632,CareFirst PG Weekly Update,Backlog,Dave Schardt,Dave Schardt,2026-10-27T09:23:54.203-0400,,weekly,CareFirst,30.0,PG,2027-04-19,,CRS-2571
+CRS-2632,CareFirst PG Weekly Update,Done,Dave Schardt,Dave Schardt,2026-10-27T09:23:54.203-0400,2026-11-03,weekly,CareFirst,30.0,PG,2027-04-19,,CRS-2571
 CRS-2631,CareFirst - Care Management December Acquisition Email,Backlog,Scott Mann,Brook Baldwin,2026-10-26T13:29:11.649-0400,,one-time,CareFirst,,Marketing,,"business-form, business-form-97",
 CRS-2630,CareFirst - Care Management November Acquisition Email,Backlog,Scott Mann,Brook Baldwin,2026-10-26T13:27:50.616-0400,,one-time,CareFirst,,Marketing,,"business-form, business-form-97",
 CRS-2629,CareFirst - Care Management December SMS Extract,Backlog,Scott Mann,Brook Baldwin,2026-10-26T13:26:18.221-0400,,one-time,CareFirst,,Marketing,,"business-form, business-form-97",
@@ -130,25 +142,25 @@ CRS-2527,Kohler- Monthly Reporting By Cohort table,Backlog,Brandon Boshers,Maryn
 CRS-2526,Delta - No Rewards MAU,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:13:48.686-0400,,monthly,Delta,30.0,Digital Engagement,2040-07-16,,CRS-129
 CRS-2525,Delta - MAU send KS/AL,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:13:46.806-0400,,monthly,Delta,10.0,Digital Engagement,2040-07-16,,CRS-130
 CRS-2524,Parsons - Rewards Completion Report,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:13:44.430-0400,,monthly,Parsons,15.0,Rewards and Incentives,2040-07-16,,CRS-132
-CRS-2523,Lennar- GLP 1 Dashboard Bi Monthly,Backlog,Brandon Boshers,Marynda Eich,2026-10-08T09:13:39.794-0400,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-142
+CRS-2523,Lennar- GLP 1 Dashboard Bi Monthly,Stakeholder Review,Brandon Boshers,Marynda Eich,2026-10-08T09:13:39.794-0400,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-142
 CRS-2522,Wellstar- 2025 Wellstar Program Report,Backlog,Brandon Boshers,Andrea Chait,2026-10-08T09:13:36.873-0400,,monthly,Wellstar,30.0,Rewards and Incentives,2040-07-31,,CRS-145
 CRS-2521,CareFirst - Care Management Forecast,Done,Adam Ibrahim,Adam Ibrahim,2026-10-08T09:13:31.117-0400,2026-10-19,biweekly,CareFirst,20.0,Care Management,2040-07-26,,CRS-162
 CRS-2520,CareFirst - Acquisition Emails - Monthly,Backlog,Adam Ibrahim,Brook Baldwin,2026-10-08T09:13:28.945-0400,2026-10-19,monthly,CareFirst,30.0,Marketing,2040-07-19,,CRS-163
-CRS-2519,Cencora (Amerisource Bergen prior) Challenge (Location) Report,Backlog,Dave Schardt,Dave Schardt,2026-10-08T09:13:11.441-0400,,monthly,Cencora,30.0,Challenges,2037-08-14,,CRS-362
+CRS-2519,Cencora (Amerisource Bergen prior) Challenge (Location) Report,Done,Dave Schardt,Dave Schardt,2026-10-08T09:13:11.441-0400,2026-11-03,monthly,Cencora,30.0,Challenges,2037-08-14,,CRS-362
 CRS-2518,SSM Health points earned by Ministry Name Monthly report,Backlog,Brandon Boshers,Shylah Negovan,2026-10-08T09:13:03.792-0400,,monthly,SSM,15.0,Rewards and Incentives,2027-02-01,,CRS-1241
 CRS-2517,Wellstar: Response data on Financial Assessment,Backlog,Brandon Boshers,Andrea Chait,2026-10-08T09:12:58.128-0400,,quarterly,Wellstar,90.0,Rewards and Incentives,2027-10-15,,CRS-1940
 CRS-2516,Fresenius- Union Group Reward Earners - provide names ,Done,Adam Ibrahim,Christy Wilson,2026-10-06T14:43:46.531-0400,2026-10-09,one-time,Fresenius,180.0,Rewards and Incentives,,Rush,
-CRS-2515,Update the monthly dashboard with the new Program ID and Challenge IDs,In Progress,Dave Schardt,Marynda Eich,2026-10-06T13:20:24.142-0400,,monthly,Cencora,,Custom,,"business-form, business-form-97",
+CRS-2515,Update the monthly dashboard with the new Program ID and Challenge IDs,Done,Dave Schardt,Marynda Eich,2026-10-06T13:20:24.142-0400,2026-11-03,monthly,Cencora,90.0,Custom,,"business-form, business-form-97",
 CRS-2514,HealthNet CA BOB - RAT Response Data,Done,Brandon Boshers,Brooke Lesser,2026-10-06T13:13:05.607-0400,2026-10-08,one-time,HealthNet - CA,90.0,Health Insights,,Rush,
 CRS-2513,SSM Health member level detail for all who have earned 700 points so far,Done,Brandon Boshers,Shylah Negovan,2026-10-06T10:56:59.428-0400,2026-10-19,one-time,SSM,180.0,Rewards and Incentives,,Rush,
 CRS-2512,CareFirst- Mercy Health Final Challenge Report,Done,Dave Schardt,Carl Veenendaal,2026-10-06T10:41:42.907-0400,2026-10-06,one-time,CareFirst,40.0,Challenges,,Rush,
 CRS-2511,Lennar RealAge Report: Financial and Mental Health,Done,Brandon Boshers,Marynda Eich,2026-10-06T09:32:27.338-0400,2026-10-09,one-time,Lennar,360.0,Custom,,Rush,
 CRS-2510,CareFirst Weekly Claims,Done,Dave Schardt,Dave Schardt,2026-10-06T09:05:37.457-0400,2026-10-06,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
 CRS-2509,CareFirst Billing - CFA Send,Backlog,Dave Schardt,Dave Schardt,2026-10-06T09:05:21.990-0400,,monthly,CareFirst,15.0,Billing,2039-07-11,,CRS-92
-CRS-2508,Koch Monthly Steps for Health Report,Backlog,Brandon Boshers,Molly Whalen,2026-10-06T09:04:48.513-0400,,monthly,Koch,45.0,Rewards and Incentives,2040-07-31,,CRS-134
+CRS-2508,Koch Monthly Steps for Health Report,Done,Brandon Boshers,Molly Whalen,2026-10-06T09:04:48.513-0400,2026-11-03,monthly,Koch,45.0,Rewards and Incentives,2040-07-31,,CRS-134
 CRS-2507,Weekly Coaching Progress,Done,Brandon Boshers,Craig Petty,2026-10-06T09:04:25.970-0400,2026-10-12,weekly,SHBP,160.0,Coaching,2040-07-31,,CRS-150
-CRS-2506,CareFirst Billing - Omada,Backlog,Dave Schardt,Dave Schardt,2026-10-06T09:03:55.621-0400,,monthly,CareFirst,60.0,Billing,2040-08-13,,CRS-219
-CRS-2505,CareFirst - Monthly Omada file transfer,Backlog,Dave Schardt,Dave Schardt,2026-10-06T09:02:37.018-0400,,monthly,CareFirst,30.0,Digital Therapeutics,2028-10-02,,CRS-679
+CRS-2506,CareFirst Billing - Omada,Done,Dave Schardt,Dave Schardt,2026-10-06T09:03:55.621-0400,2026-11-03,monthly,CareFirst,60.0,Billing,2040-08-13,,CRS-219
+CRS-2505,CareFirst - Monthly Omada file transfer,Done,Dave Schardt,Dave Schardt,2026-10-06T09:02:37.018-0400,2026-11-03,monthly,CareFirst,30.0,Digital Therapeutics,2028-10-02,,CRS-679
 CRS-2504,CareFirst WDM Weekly Billing Counts,Done,Dave Schardt,Dave Schardt,2026-10-06T09:01:56.213-0400,2026-10-12,weekly,CareFirst,30.0,Coaching,2026-12-28,,CRS-1443
 CRS-2503,CareFirst Billing File updates,Backlog,Dave Schardt,Dave Schardt,2026-10-06T09:01:29.157-0400,,monthly,CareFirst,60.0,Billing,2030-04-05,,CRS-1540
 CRS-2502,Loews Weekly Custom Report,Done,Brandon Boshers,Luke Staebell,2026-10-06T09:01:12.866-0400,2026-10-12,weekly,Loews Hotels,300.0,Rewards and Incentives,2027-01-05,,CRS-1827
@@ -161,12 +173,12 @@ CRS-2496,Gwinnett County New Hires by GroupID1,Done,Brandon Boshers,Ginger Maloy
 CRS-2495,"CareFirst - ERN Monthly Billing (DPP, WL, ME)",Done,Adam Ibrahim,Adam Ibrahim,2026-10-05T09:07:52.623-0400,2026-11-02,monthly,CareFirst,150.0,Billing,2040-08-22,,CRS-222
 CRS-2494,CareFirst - ADR Redemption Report Biweekly Ftp Drop,Done,Adam Ibrahim,Adam Ibrahim,2026-10-05T09:07:27.460-0400,2026-10-19,biweekly,,18.0,Rewards and Incentives,2039-02-24,,CRS-1324
 CRS-2493,SHBP- Real Age Completion Test,Done,Brandon Boshers,Brandeus Davis,2026-10-03T09:01:18.620-0400,2026-10-09,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
-CRS-2492,CareFirst- Smart Dollar and Ovia Billing Report,Backlog,Dave Schardt,Dave Schardt,2026-10-03T09:01:09.565-0400,,monthly,Client Not Listed,60.0,Billing,2036-07-15,,CRS-81
-CRS-2491,CareFirst Billing - Ovia,Backlog,Dave Schardt,Dave Schardt,2026-10-03T09:01:06.414-0400,,monthly,CareFirst,60.0,Billing,2036-07-15,,CRS-84
+CRS-2492,CareFirst- Smart Dollar and Ovia Billing Report,Done,Dave Schardt,Dave Schardt,2026-10-03T09:01:09.565-0400,2026-11-03,monthly,Client Not Listed,60.0,Billing,2036-07-15,,CRS-81
+CRS-2491,CareFirst Billing - Ovia,Done,Dave Schardt,Dave Schardt,2026-10-03T09:01:06.414-0400,2026-11-03,monthly,CareFirst,60.0,Billing,2036-07-15,,CRS-84
 CRS-2490,SHBP- Monthly Billing Deliverables,Done,Brandon Boshers,Brandon Boshers,2026-10-03T09:01:00.119-0400,2026-11-02,monthly,SHBP,780.0,Billing,2040-07-31,,CRS-120
-CRS-2489,Lennar Biweekly GLP1 Marketing Email - Temp Custom Process,Backlog,Brandon Boshers,Marynda Eich,2026-10-03T09:00:50.210-0400,,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-136
+CRS-2489,Lennar Biweekly GLP1 Marketing Email - Temp Custom Process,Done,Brandon Boshers,Marynda Eich,2026-10-03T09:00:50.210-0400,2026-11-03,monthly,Lennar,120.0,Advocacy,2040-07-31,,CRS-136
 CRS-2488,BCBS AZ- Run Weekly RAT and REG History Report,Done,Brandon Boshers,Brooke Lesser,2026-10-03T09:00:44.504-0400,2026-10-09,weekly,BCBSAZ,15.0,Onboarding,2040-07-31,,CRS-151
-CRS-2487,CareFirst WDM Billing,Backlog,Dave Schardt,Dave Schardt,2026-10-03T09:00:33.216-0400,,monthly,CareFirst,60.0,Billing,2040-08-27,,CRS-274
+CRS-2487,CareFirst WDM Billing,Done,Dave Schardt,Dave Schardt,2026-10-03T09:00:33.216-0400,2026-11-03,monthly,CareFirst,60.0,Billing,2040-08-27,,CRS-274
 CRS-2486,Carelinx's Identification File Using ADT File from Cigna,Done,Brandon Boshers,Brandon Boshers,2026-10-03T09:00:20.790-0400,2026-10-12,weekly,Lennar,15.0,Custom,2030-12-05,,CRS-963
 CRS-2485,BCBS AZ- Sundt strong DPR - Weekly,Done,Brandon Boshers,Brooke Lesser,2026-10-03T09:00:11.958-0400,2026-10-09,weekly,BCBSAZ,15.0,Rewards and Incentives,2027-07-02,,CRS-2024
 CRS-2484,CareFirst- MTSI Data Request,Done,Brandon Boshers,Carl Veenendaal,2026-10-02T14:11:58.726-0400,2026-10-08,one-time,CareFirst,180.0,Digital Engagement,,Rush,
@@ -295,7 +307,7 @@ CRS-2362,SSM Health points earned by Ministry Name Monthly report,Done,Brandon B
 CRS-2361,CareFirst Billing File updates,Done,Dave Schardt,Dave Schardt,2026-09-11T09:00:19.539-0400,2026-10-05,monthly,CareFirst,90.0,Billing,2030-04-05,,CRS-1540
 CRS-2360,NextEra Energy 2026 Med and CA Program,Done,Adam Ibrahim,Neely Niemann,2026-09-10T15:27:57.461-0400,2026-09-10,one-time,NextEra,45.0,Rewards and Incentives,,Rush,
 CRS-2359,CareFirst- Allegany County Commissioners Topic Card Detail ,Done,Brandon Boshers,Carl Veenendaal,2026-09-09T13:35:38.436-0400,2026-11-03,one-time,CareFirst,60.0,Digital Engagement,,"business-form, business-form-97",
-CRS-2358,CareFirst- Billing-Weekly reporting to show billing discrepancies between Five9 and SCP for billing purposes,On Hold,Dave Schardt,Daffney Eddins,2026-09-09T13:33:11.900-0400,,weekly,CareFirst,,Billing,,Rush,
+CRS-2358,CareFirst- Billing-Weekly reporting to show billing discrepancies between Five9 and SCP for billing purposes,Done,Dave Schardt,Daffney Eddins,2026-09-09T13:33:11.900-0400,2026-11-03,weekly,CareFirst,60.0,Billing,,Rush,
 CRS-2357,SHBP- Real Age Completion Test,Done,Brandon Boshers,Brandeus Davis,2026-09-09T09:01:29.423-0400,2026-09-14,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
 CRS-2356,CareFirst- Smart Dollar and Ovia Billing Report,Done,Dave Schardt,Dave Schardt,2026-09-09T09:01:21.795-0400,2026-10-02,monthly,Client Not Listed,60.0,Billing,2036-07-15,,CRS-81
 CRS-2355,CareFirst Billing - CFA Send,Done,Dave Schardt,Dave Schardt,2026-09-09T09:01:15.837-0400,2026-10-05,monthly,CareFirst,25.0,Billing,2039-07-11,,CRS-92
