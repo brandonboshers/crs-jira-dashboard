@@ -1,4 +1,7 @@
 key,summary,status,assignee,reporter,created,closed_date,frequency,client,estimated_completion_time,task_type,recurring_end_date,labels,parent_key
+CRS-2748,Challenge Enrollments for Current Month Challenge,Backlog,Brandon Boshers,Brandon Boshers,2026-11-19T09:03:02.595-0500,,monthly,AEP,30.0,Challenges,2040-07-31,,CRS-70
+CRS-2747,EMD - Cooking Class (Soups 101) Bulk Refire,Stakeholder Review,Brandon Boshers,Shylah Negovan,2026-11-18T20:10:22.149-0500,,one-time,EMD,120.0,Rewards and Incentives,,,
+CRS-2746,LAPRA: QAR data covering Jan-Dec 2026,Backlog,Scott Mann,Andrea Chait,2026-11-18T14:03:55.022-0500,,one-time,LAPRA,,Fitness,,"business-form, business-form-97",
 CRS-2745,Weekly Coaching Progress,Backlog,Brandon Boshers,Craig Petty,2026-11-18T09:19:49.227-0500,,weekly,SHBP,160.0,Coaching,2040-07-31,,CRS-150
 CRS-2744,CareFirst - Care Management IDS Process - Monthly,Backlog,Adam Ibrahim,Adam Ibrahim,2026-11-18T09:19:42.963-0500,,monthly,CareFirst,360.0,Care Management,2040-07-31,,CRS-161
 CRS-2743,CareFirst - Care Management Forecast,Backlog,Adam Ibrahim,Adam Ibrahim,2026-11-18T09:19:40.241-0500,,biweekly,CareFirst,20.0,Care Management,2040-07-26,,CRS-162
@@ -158,7 +161,7 @@ CRS-2588,CareFirst PG Weekly Update,Done,Dave Schardt,Dave Schardt,2026-10-20T09
 CRS-2587,CareFirst Admin Billing Non-Insured rule,Done,Dave Schardt,Dave Schardt,2026-10-19T15:10:06.514-0400,2026-10-21,one-time,CareFirst,45.0,Billing,,Rush,
 CRS-2586,Niagara- Coastline of Australia Reporting,Done,Adam Ibrahim,Luke Staebell,2026-10-19T15:00:56.482-0400,2026-10-22,one-time,Niagara Bottling Company,120.0,Challenges,,Rush,
 CRS-2585,SHBP- Real Age Completion Test,Done,Brandon Boshers,Brandeus Davis,2026-10-19T09:21:03.413-0400,2026-10-23,weekly,SHBP,25.0,Onboarding,2040-07-31,,CRS-65
-CRS-2584,Challenge Enrollments for Current Month Challenge,Backlog,Brandon Boshers,Brandon Boshers,2026-10-19T09:21:00.254-0400,,monthly,AEP,30.0,Challenges,2040-07-31,,CRS-70
+CRS-2584,Challenge Enrollments for Current Month Challenge,Done,Brandon Boshers,Brandon Boshers,2026-10-19T09:21:00.254-0400,2026-11-19,monthly,AEP,30.0,Challenges,2040-07-31,,CRS-70
 CRS-2583,Carelinx's Identification File Using ADT File from Cigna,Done,Brandon Boshers,Brandon Boshers,2026-10-19T09:20:07.165-0400,2026-10-26,weekly,Lennar,15.0,Custom,2030-12-05,,CRS-963
 CRS-2582,CareFirst Weekly Claims,Done,Dave Schardt,Dave Schardt,2026-10-17T17:05:28.984-0400,2026-10-23,weekly,CareFirst,10.0,Billing,2036-07-15,,CRS-82
 CRS-2581,Next Era- Wellness Summary - BiWeekly Custom Extract,Done,Brandon Boshers,Neely Niemann,2026-10-16T13:08:17.583-0400,2026-10-29,biweekly,NextEra,30.0,Rewards and Incentives,2040-07-31,,CRS-126
